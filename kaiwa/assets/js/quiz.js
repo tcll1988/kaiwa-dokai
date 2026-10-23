@@ -24,8 +24,10 @@
  *   （ha3o = hao3 = hǎo）。こうした欄には「例：ba4」と薄く表示。
  *
  * 翻訳（「〜に訳しなさい」の問題で、答えが日本語の文、または中国語訳の文）は
- *   言い方が何通りもあるので「×」にしない: 合わなければ「模範解答」を見せ、
- *   自分で「〇をつける」ことができる。「模範解答を見る」ボタンも付ける。
+ *   従来どおりの採点：答えと一致すれば「〇」、一致しなければすぐに正解（模範解答）を表示。
+ *   「× もう一度」は出さない（従来も 1 回目から正解を表示していたため）。
+ *   自己採点（自分で〇をつける）は無し＝〇になるのは答えと一致したときだけ。
+ *   「模範解答を見る」ボタンは付ける（従来も何か入力して確認すれば正解が見えたのと同じ）。
  */
 (function (w, d) {
   'use strict';
@@ -112,15 +114,6 @@
     r.textContent = '';
     r.textContent = text;
     r.style.color = state === 'ok' ? 'red' : 'black';   // CSS が読めない環境向けの従来色
-    var old = d.getElementById(qid + '_self');
-    if (old) old.parentNode.removeChild(old);
-    if (state === 'model') {
-      // 自己採点ボタン
-      var sb = d.createElement('input');
-      sb.type = 'button'; sb.value = '〇をつける'; sb.id = qid + '_self'; sb.className = 'kd-self';
-      sb.onclick = function () { show(qid, '〇', 'ok'); progSave(qid); };
-      r.parentNode.insertBefore(sb, r.nextSibling);
-    }
   }
 
   function markField(el, ok) {
@@ -171,7 +164,7 @@
       markField(els[i], els.length > 1 && !(f && !good) ? good : null);
     }
     if (ok) { show(qid, '〇', 'ok'); progSave(qid); return; }
-    if (fixedOk) { showModel(qid, parts, els.length); return; }   // 違うのは翻訳欄だけ
+    if (fixedOk) { showModel(qid, parts, els.length); return; }   // 違うのは翻訳欄だけ → 従来どおりすぐ正解を表示（〇にはしない）
     tries[qid] = (tries[qid] || 0) + 1;
     if (tries[qid] < SHOW_ANSWER_AFTER) show(qid, '×　もう一度', 'retry');
     else show(qid, parts.slice(0, els.length).join(', '), 'answer');

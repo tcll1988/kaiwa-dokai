@@ -127,7 +127,7 @@ label.is-answer::before{content:"正解は ";font-family:var(--font-ja);font-wei
 /* quiz.js：1回目の不正解（もう一度）・未回答 */
 label.is-model{color:var(--ink) !important;background:var(--accent-2-soft);padding:6px 14px;border-radius:12px;white-space:pre-line;text-align:left}
 label.is-model::before{content:"模範解答 ";font-family:var(--font-ja);font-weight:600;color:var(--accent-2)}
-html body input.kd-model, html body input.kd-self{background:#fff;color:var(--accent-2);border:1.5px solid var(--accent-2-soft)}
+html body input.kd-model{background:#fff;color:var(--accent-2);border:1.5px solid var(--accent-2-soft)}
 label.is-retry{color:var(--ng) !important;background:var(--ng-soft);padding:6px 14px;border-radius:12px;font-weight:700;font-family:var(--font-ja)}
 label.is-empty{color:var(--muted) !important;background:var(--accent-2-soft);padding:6px 14px;border-radius:12px;font-family:var(--font-ja)}
 @media (prefers-reduced-motion:no-preference){label.is-retry{animation:kd-shake .3s}}
