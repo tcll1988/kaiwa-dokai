@@ -1,0 +1,24 @@
+# 既知の欠落（linkcheck.py --strict でもエラーにしない）
+# 2026-10 時点：OneDrive の一括ダウンロードが失敗し（TooManyRequests）手元に無いファイル。
+# 元ファイルを入手して追加したら、該当行を消してください。
+kaiwa/k1.html	images/13.png
+kaiwa/k1.html	images/14.png
+kaiwa/k1.html	k1-m.html
+kaiwa/8k/homework/kaiwa/8k-t1-1.html	8k-t2-1.html
+kaiwa/8k/homework/kaiwa/8k-t1-2.html	8k-t2-1.html
+kaiwa/8k/homework/kaiwa/8k-t1-2.html	8k-t1-3.html
+dokai/d1.html	images/13.png
+dokai/d1.html	images/14.png
+dokai/d1.html	d1-m.html
+# 孤立音声：8k-t1-3 / 8k-t2-1 のページが欠落しているため、使われていないように見えるもの
+ORPHAN	kaiwa/8k/homework/kaiwa/sound/8k-t-19.mp3
+ORPHAN	kaiwa/8k/homework/kaiwa/sound/8k-t-20.mp3
+ORPHAN	kaiwa/8k/homework/kaiwa/sound/8k-t-21.mp3
+ORPHAN	kaiwa/8k/homework/kaiwa/sound/8k-t-22.mp3
+ORPHAN	kaiwa/8k/homework/kaiwa/sound/8k-t2-1.mp3
+ORPHAN	kaiwa/8k/homework/kaiwa/sound/8k-t2-2.mp3
+ORPHAN	kaiwa/8k/homework/kaiwa/sound/8k-t2-3.mp3
+ORPHAN	kaiwa/8k/homework/kaiwa/sound/8k-t2-4.mp3
+# 孤立音声：音声はあるが、どのページにも該当する単語行が無い（先生に確認中）
+ORPHAN	kaiwa/10k/homework/kaiwa/sound/10k-t-12.mp3
+ORPHAN	kaiwa/13k/homework/kaiwa/sound/13k-t-19.mp3

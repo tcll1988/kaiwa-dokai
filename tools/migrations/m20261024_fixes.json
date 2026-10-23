@@ -1,0 +1,380 @@
+[
+ {
+  "file": "kaiwa/13k/homework/kaiwa/13k-t1-3.html",
+  "from": "id=\"12k-t-28_py\"",
+  "to": "id=\"13k-t-28_py\"",
+  "count": 1,
+  "why": "拼音行だけ12課の番号（同じ行の中国語は 13k-t-28）"
+ },
+ {
+  "file": "kaiwa/2k/homework/kaiwa/2k-t1-2.html",
+  "from": "id=\"12k-t-14_jp\"",
+  "to": "id=\"2k-t-14_jp\"",
+  "count": 1,
+  "why": "日本語行だけ12課の番号（同じ行の中国語は 2k-t-14）"
+ },
+ {
+  "file": "kaiwa/7k/homework/kaiwa/7k-l5-2.html",
+  "from": "href=\"67k-l5-1.html\"",
+  "to": "href=\"7k-l5-1.html\"",
+  "count": 1,
+  "why": "「前へ」の打ち間違い（7k-l5-1 の「次へ」が 7k-l5-2）"
+ },
+ {
+  "file": "dokai/7k/homework/dokai/7k-l-1.html",
+  "from": "id=\"d1-6k-l-2_py\"",
+  "to": "id=\"d1-7k-l-2_py\"",
+  "count": 1,
+  "why": "拼音行だけ6課の番号（同じ行は d1-7k-l-2）"
+ },
+ {
+  "file": "dokai/2k/homework/dokai/2k-l4-5.html",
+  "from": "href=\"12k-l4-4.html\"",
+  "to": "href=\"2k-l4-4.html\"",
+  "count": 1,
+  "why": "「前へ」の打ち間違い（2k-l4-4 の「次へ」が 2k-l4-5）"
+ },
+ {
+  "file": "dokai/11k/homework/dokai/11k-t1-4.html",
+  "from": "href=\"11k-t1-2.html\"",
+  "to": "href=\"11k-t1-3.html\"",
+  "count": 1,
+  "why": "「前へ」が t1-3 を飛ばしていた（11k-t1-3 の「次へ」が t1-4）"
+ },
+ {
+  "file": "dokai/8k/homework/dokai/8k-t.html",
+  "from": "window.location.href('8k.html')",
+  "to": "window.location.href='../../8k.html'",
+  "count": 1,
+  "why": "「戻る」：JS 誤り＋パス誤り"
+ },
+ {
+  "file": "dokai/8k/homework/dokai/8k-t2.html",
+  "from": "window.location.href('8k.html')",
+  "to": "window.location.href='../../8k.html'",
+  "count": 1,
+  "why": "「戻る」：JS 誤り＋パス誤り"
+ },
+ {
+  "file": "kaiwa/7k/homework/kaiwa/7k-l3-1.html",
+  "from": "<option value=\"E\">呢</option>",
+  "to": "<option value=\"F\">呢</option>",
+  "count": 1,
+  "why": "選択肢「呢」の value が「吧」と同じ E（答えデータは F）。呢を選ぶと正解できなかった"
+ },
+ {
+  "file": "kaiwa/7k/homework/kaiwa/7k-l3-2.html",
+  "from": "<option value=\"E\">呢</option>",
+  "to": "<option value=\"F\">呢</option>",
+  "count": 1,
+  "why": "選択肢「呢」の value が「吧」と同じ E（答えデータは F）。呢を選ぶと正解できなかった"
+ },
+ {
+  "file": "kaiwa/7k/homework/kaiwa/7k-l3-3.html",
+  "from": "<option value=\"E\">呢</option>",
+  "to": "<option value=\"F\">呢</option>",
+  "count": 1,
+  "why": "選択肢「呢」の value が「吧」と同じ E（答えデータは F）。呢を選ぶと正解できなかった"
+ },
+ {
+  "file": "kaiwa/7k/homework/kaiwa/7k-l3-4.html",
+  "from": "<option value=\"E\">呢</option>",
+  "to": "<option value=\"F\">呢</option>",
+  "count": 2,
+  "why": "選択肢「呢」の value が「吧」と同じ E（答えデータは F）。呢を選ぶと正解できなかった"
+ },
+ {
+  "file": "kaiwa/7k/homework/kaiwa/7k-l3-5.html",
+  "from": "<option value=\"E\">呢</option>",
+  "to": "<option value=\"F\">呢</option>",
+  "count": 1,
+  "why": "選択肢「呢」の value が「吧」と同じ E（答えデータは F）。呢を選ぶと正解できなかった"
+ },
+ {
+  "file": "dokai/8k/8k.html",
+  "from": "<a href=\"8k-l.html\">",
+  "to": "<a href=\"homework/dokai/8k-l.html\">",
+  "count": 1,
+  "why": "「宿題」アイコンのリンク先誤り（下の「宿題」文字リンクと同じ先に）"
+ },
+ {
+  "file": "dokai/9k/9k.html",
+  "from": "<a href=\"8k-l.html\">",
+  "to": "<a href=\"homework/dokai/9k-l.html\">",
+  "count": 1,
+  "why": "「宿題」アイコンのリンク先誤り（下の「宿題」文字リンクと同じ先に）"
+ },
+ {
+  "file": "dokai/10k/10k.html",
+  "from": "<a href=\"8k-l.html\">",
+  "to": "<a href=\"homework/dokai/10k-l.html\">",
+  "count": 1,
+  "why": "「宿題」アイコンのリンク先誤り（下の「宿題」文字リンクと同じ先に）"
+ },
+ {
+  "file": "dokai/11k/11k.html",
+  "from": "<a href=\"8k-l.html\">",
+  "to": "<a href=\"homework/dokai/11k-l.html\">",
+  "count": 1,
+  "why": "「宿題」アイコンのリンク先誤り（下の「宿題」文字リンクと同じ先に）"
+ },
+ {
+  "file": "dokai/12k/12k.html",
+  "from": "<a href=\"8k-l.html\">",
+  "to": "<a href=\"homework/dokai/12k-l.html\">",
+  "count": 1,
+  "why": "「宿題」アイコンのリンク先誤り（下の「宿題」文字リンクと同じ先に）"
+ },
+ {
+  "file": "dokai/13k/13k.html",
+  "from": "<a href=\"8k-l.html\">",
+  "to": "<a href=\"homework/dokai/13k-l.html\">",
+  "count": 1,
+  "why": "「宿題」アイコンのリンク先誤り（下の「宿題」文字リンクと同じ先に）"
+ },
+ {
+  "file": "dokai/14k/14k.html",
+  "from": "<a href=\"8k-l.html\">",
+  "to": "<a href=\"homework/dokai/14k-l.html\">",
+  "count": 1,
+  "why": "「宿題」アイコンのリンク先誤り（下の「宿題」文字リンクと同じ先に）"
+ },
+ {
+  "file": "dokai/14k/14k.html",
+  "from": "window.location.href('…')",
+  "to": "window.location.href='…'",
+  "count": 1,
+  "why": "「戻る」等のボタンが JS エラーで動かなかった"
+ },
+ {
+  "file": "dokai/8k/8k.html",
+  "from": "window.location.href('…')",
+  "to": "window.location.href='…'",
+  "count": 1,
+  "why": "「戻る」等のボタンが JS エラーで動かなかった"
+ },
+ {
+  "file": "dokai/8k/homework/dokai/8k-t.html",
+  "from": "window.location.href('…')",
+  "to": "window.location.href='…'",
+  "count": 1,
+  "why": "「戻る」等のボタンが JS エラーで動かなかった"
+ },
+ {
+  "file": "dokai/8k/homework/dokai/8k-t2.html",
+  "from": "window.location.href('…')",
+  "to": "window.location.href='…'",
+  "count": 1,
+  "why": "「戻る」等のボタンが JS エラーで動かなかった"
+ },
+ {
+  "file": "dokai/2k/2k.html",
+  "from": "window.location.href('…')",
+  "to": "window.location.href='…'",
+  "count": 1,
+  "why": "「戻る」等のボタンが JS エラーで動かなかった"
+ },
+ {
+  "file": "dokai/9k/9k.html",
+  "from": "window.location.href('…')",
+  "to": "window.location.href='…'",
+  "count": 1,
+  "why": "「戻る」等のボタンが JS エラーで動かなかった"
+ },
+ {
+  "file": "dokai/3k/3k.html",
+  "from": "window.location.href('…')",
+  "to": "window.location.href='…'",
+  "count": 1,
+  "why": "「戻る」等のボタンが JS エラーで動かなかった"
+ },
+ {
+  "file": "dokai/7k/7k.html",
+  "from": "window.location.href('…')",
+  "to": "window.location.href='…'",
+  "count": 1,
+  "why": "「戻る」等のボタンが JS エラーで動かなかった"
+ },
+ {
+  "file": "dokai/10k/10k.html",
+  "from": "window.location.href('…')",
+  "to": "window.location.href='…'",
+  "count": 1,
+  "why": "「戻る」等のボタンが JS エラーで動かなかった"
+ },
+ {
+  "file": "dokai/4k/4k.html",
+  "from": "window.location.href('…')",
+  "to": "window.location.href='…'",
+  "count": 1,
+  "why": "「戻る」等のボタンが JS エラーで動かなかった"
+ },
+ {
+  "file": "dokai/1k/1k.html",
+  "from": "window.location.href('…')",
+  "to": "window.location.href='…'",
+  "count": 1,
+  "why": "「戻る」等のボタンが JS エラーで動かなかった"
+ },
+ {
+  "file": "dokai/13k/13k.html",
+  "from": "window.location.href('…')",
+  "to": "window.location.href='…'",
+  "count": 1,
+  "why": "「戻る」等のボタンが JS エラーで動かなかった"
+ },
+ {
+  "file": "dokai/6k/6k.html",
+  "from": "window.location.href('…')",
+  "to": "window.location.href='…'",
+  "count": 1,
+  "why": "「戻る」等のボタンが JS エラーで動かなかった"
+ },
+ {
+  "file": "dokai/11k/11k.html",
+  "from": "window.location.href('…')",
+  "to": "window.location.href='…'",
+  "count": 1,
+  "why": "「戻る」等のボタンが JS エラーで動かなかった"
+ },
+ {
+  "file": "dokai/5k/5k.html",
+  "from": "window.location.href('…')",
+  "to": "window.location.href='…'",
+  "count": 1,
+  "why": "「戻る」等のボタンが JS エラーで動かなかった"
+ },
+ {
+  "file": "dokai/12k/12k.html",
+  "from": "window.location.href('…')",
+  "to": "window.location.href='…'",
+  "count": 1,
+  "why": "「戻る」等のボタンが JS エラーで動かなかった"
+ },
+ {
+  "file": "kaiwa/k1.html",
+  "from": "<a …>第N課</font>",
+  "to": "<a …>第N課</a></font>",
+  "count": 11,
+  "why": "閉じタグ漏れ"
+ },
+ {
+  "file": "dokai/d1.html",
+  "from": "<a …>第N課</font>",
+  "to": "<a …>第N課</a></font>",
+  "count": 11,
+  "why": "閉じタグ漏れ"
+ },
+ {
+  "removed": "dokai/dokai/",
+  "why": "読解サイトの不完全な旧コピー。どのページからもリンクなし"
+ },
+ {
+  "removed": "kaiwa/14k/homework/kaiwa/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "kaiwa/2k/homework/kaiwa/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "kaiwa/9k/homework/kaiwa/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "kaiwa/3k/homework/kaiwa/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "kaiwa/7k/homework/kaiwa/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "kaiwa/10k/homework/kaiwa/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "kaiwa/4k/homework/kaiwa/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "kaiwa/1k/homework/kaiwa/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "kaiwa/13k/homework/kaiwa/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "kaiwa/6k/homework/kaiwa/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "kaiwa/11k/homework/kaiwa/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "kaiwa/5k/homework/kaiwa/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "kaiwa/12k/homework/kaiwa/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "dokai/14k/homework/dokai/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "dokai/8k/homework/dokai/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "dokai/2k/homework/dokai/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "dokai/9k/homework/dokai/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "dokai/3k/homework/dokai/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "dokai/7k/homework/dokai/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "dokai/10k/homework/dokai/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "dokai/4k/homework/dokai/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "dokai/1k/homework/dokai/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "dokai/13k/homework/dokai/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "dokai/6k/homework/dokai/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "dokai/11k/homework/dokai/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "dokai/5k/homework/dokai/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ },
+ {
+  "removed": "dokai/12k/homework/dokai/wordRadioFile.js",
+  "why": "27 個とも同一内容。player.js に統合し参照ゼロ"
+ }
+]

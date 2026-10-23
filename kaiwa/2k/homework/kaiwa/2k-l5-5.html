@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>第2課練習問題5-5</title>
@@ -24,69 +24,10 @@ a:visited {
 	color: #03F;
 }
 </style>
-<script type="text/javascript" src="2k-a.js"></script>
-<script>
-
-// num1:大問題No, num2: 小問題No
-function doRight(num1, num2){
-  // 正解
-  var rightAns = doFindAnswer(num1, num2);
-  // 問題ID 問題ID　"_" 問題ID 問題数をおじて　追加する
-  var questionId = num1 + '_' + num2;
-  
-  
-    // 問題数をおじて　追加する
-
-  // 問題_1
-  var questionId_1 = questionId.concat("_1");
-  // 問題_2
-  var questionId_2 = questionId.concat("_2");
-
-  
-  
-  
-      // 問題数をおじて　追加する
-  // 学生の答え(1)
-  var stuAns_1 = document.getElementById(questionId_1).value;
-  // 学生の答え(2)
-  var stuAns_2 = document.getElementById(questionId_2).value;
-  
-  // 答え表示
-  var resultVie = questionId + '_R';
-  
-  // 正解を取得
-  var rightAnsArg = rightAns.split("@");
-  
-  var viewResult = "";
-  
-  // 結果比較       問題数をおじて　追加する
-  if (rightAnsArg.length < 2) {
-    // エラー内容
-    alert("ERROR");
-    return;
-  }
-  // 学生の答え内容を判断      
-  // 問題数をおじて　追加する
-  if (rightAnsArg[0] == stuAns_1 && rightAnsArg[1] == stuAns_2) {
-    // 正確の場合
-    document.getElementById(resultVie).innerText = "〇";
-    document.getElementById(resultVie).style.color = "red";
-  } else {
-    // 誤りの場合
-    // 正解を表示
-        // 問題数をおじて　追加する
-    viewResult = rightAnsArg[0].concat(", ").concat(rightAnsArg[1]);
-    document.getElementById(resultVie).innerText = viewResult;
-    document.getElementById(resultVie).style.color = "black";
-  }
-  
-
-   
-};
-</script>
+<script type="text/javascript" src="2k-a.js?v=20261024"></script>
 <!-- ui-skin:start -->
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<link rel="stylesheet" href="../../../assets/ui/ui.css?v=20261023" />
+<link rel="stylesheet" href="../../../assets/ui/ui.css?v=20261024" />
 <!-- ui-skin:end -->
 </head>
 <body>
@@ -125,9 +66,12 @@ function doRight(num1, num2){
 </tr> 
 </table>
 
+<!-- kd-js:start -->
+<script src="../../../assets/js/quiz.js?v=20261024"></script>
+<!-- kd-js:end -->
 <!-- ui-skin:start -->
-<script src="../../../assets/ui/lessons.js?v=20261023"></script>
-<script src="../../../assets/ui/ui.js?v=20261023"></script>
+<script src="../../../assets/ui/lessons.js?v=20261024"></script>
+<script src="../../../assets/ui/ui.js?v=20261024"></script>
 <!-- ui-skin:end -->
 </body>
 </html>

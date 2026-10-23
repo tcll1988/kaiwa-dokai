@@ -1,0 +1,31 @@
+# サイトチェック（リンク切れ・音声・答えデータ）
+# push / PR のたびに自動で実行。結果は GitHub の「Actions」タブで確認できます。
+# GitHub Pages の公開（デプロイ）とは別の処理なので、ここが失敗してもサイトの公開は止まりません。
+name: site-check
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 共通ファイルが会話・読解で同じか
+        run: python3 tools/sync_assets.py --check
+      - name: 問題セット情報（進み具合表示用）が最新か
+        run: python3 tools/gen_sets.py --check
+      - name: リンク・音声のチェック
+        run: python3 tools/linkcheck.py --strict
+      - name: 前へ／次へのチェック
+        if: always()
+        run: python3 tools/navcheck.py --strict
+      - name: 答えデータのチェック
+        if: always()
+        run: python3 tools/quizcheck.py --strict

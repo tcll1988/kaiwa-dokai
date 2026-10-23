@@ -1,5 +1,5 @@
 /* ==========================================================
-   中国語 会話/読解 宿題サイト — 共通UIスキン (drop-in)  v2026-10-23
+   中国語 会話/読解 宿題サイト — 共通UIスキン (drop-in)  v2026-10-24
    ・既存HTMLの本文・音声・採点ロジック・ファイル名は一切変更しない
    ・<head> に本CSS、</body> 前に ui.js を1行ずつ追加するだけ
    ・外すときはその2行（+viewport）を消せば元の見た目に戻る
@@ -24,7 +24,7 @@ html body{
 }
 /* 旧来の <font face="SimSun/MS明朝"> を無効化して端末に合うフォントへ */
 html body font{font-family:inherit !important}
-html body font[size="1"]{font-size:.8rem} html body font[size="2"]{font-size:.9rem}
+html body font[size="1"]{font-size:.95rem} html body font[size="2"]{font-size:.95rem}
 html body font[size="3"]{font-size:1rem}  html body font[size="4"]{font-size:1.1rem}
 html body font[size="5"]{font-size:1.2rem} html body font[size="6"]{font-size:1.45rem}
 html body font[size="+2"]{font-size:1.3rem}
@@ -84,12 +84,12 @@ html body #title{position:sticky;top:0;z-index:20;margin:0 auto 14px;background:
   -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:var(--radius);box-shadow:var(--shadow);padding:6px 8px}
 html body #title tbody, html body #title tr{display:flex;flex-wrap:wrap;gap:4px 6px;justify-content:center;align-items:center}
 html body #title td{display:block;padding:0}
-html body #title lable{font-size:.85rem;color:var(--muted)}
+html body #title lable{font-size:.95rem;color:var(--muted)}
 html body #title a{display:inline-flex;align-items:center;min-height:var(--tap);padding:0 10px;font-weight:600}
-lable[onclick]{cursor:pointer;border-radius:8px;padding:2px 4px;transition:background .15s;-webkit-tap-highlight-color:transparent}
+lable[onclick]{cursor:pointer;border-radius:8px;padding:6px 6px;margin:-4px 0;transition:background .15s;-webkit-tap-highlight-color:transparent}
 lable[onclick]:hover{background:var(--accent-soft)}
-/* 再生中（元スクリプトが style="color: red" を付ける）→ 蛍光ペン表示 */
-html body lable[style*="red"], html body lable[style*="red"] font{color:var(--ink) !important;background:var(--hl);box-shadow:0 0 0 3px var(--hl)}
+/* 再生中（assets/js/player.js が .kd-playing を付ける）→ 蛍光ペン表示 */
+html body .kd-playing, html body .kd-playing font, html body lable[style*="red"], html body lable[style*="red"] font{color:var(--ink) !important;background:var(--hl);box-shadow:0 0 0 3px var(--hl)}
 lable[id$="_ch"]{font-family:var(--font-zh) !important;font-size:1.45rem;line-height:1.9;letter-spacing:.03em}
 lable[id$="_py"]{font-family:var(--font-py) !important;color:var(--accent);font-size:1.08rem;letter-spacing:.01em}
 lable[id$="_jp"]{color:var(--muted);font-size:.98rem}
@@ -105,8 +105,8 @@ lable[id$="_ch"] font, lable[id$="_py"] font, lable[id$="_jp"] font{font-size:in
 .ui-vocab td[id="td_ch"] lable{font-size:1.4rem}
 .ui-vocab td[id^="td_"] br{display:none}
 .ui-vocab td[id="td_jp"]{white-space:normal;min-width:7em}
-.ui-vocab td[id="td_jp"] lable{display:flex !important;align-items:center;line-height:1.25 !important;font-size:.9rem !important;overflow:hidden}
-.ui-vocab td[id^="td_"] lable{display:block;height:2.6rem;border-bottom:1px solid var(--line);border-radius:0}
+.ui-vocab td[id="td_jp"] lable{display:flex !important;align-items:center;line-height:1.25 !important;font-size:.95rem !important;overflow:hidden}
+.ui-vocab td[id^="td_"] lable{display:block;height:2.6rem;padding:0 4px;margin:0;border-bottom:1px solid var(--line);border-radius:0}
 
 /* ---------- 練習問題 ---------- */
 .ui-exercise > div[align=center] p{max-width:var(--maxw);margin:0 auto;text-align:left}
@@ -120,10 +120,21 @@ html body table[border="1"] tr:last-child td{border-bottom:0}
 html body table[border="1"] td font[size="6"]{font-size:1.35rem}
 /* 採点結果（〇 / 正解表示） */
 label[id$="_R"]{display:inline-block;min-height:1.6em;font-family:var(--font-zh)}
-label.ui-ok{color:var(--ok) !important;background:var(--ok-soft);padding:6px 14px;border-radius:999px;font-weight:700}
-label.ui-ok::after{content:"  正解！";font-family:var(--font-ja)}
-label.ui-ng{color:var(--ng) !important;background:var(--ng-soft);padding:6px 14px;border-radius:12px;font-weight:600;white-space:normal}
-label.ui-ng::before{content:"正解は ";font-family:var(--font-ja);font-weight:500;color:var(--muted)}
+label.is-ok{color:var(--ok) !important;background:var(--ok-soft);padding:6px 14px;border-radius:999px;font-weight:700}
+label.is-ok::after{content:"  正解！";font-family:var(--font-ja)}
+label.is-answer{color:var(--ng) !important;background:var(--ng-soft);padding:6px 14px;border-radius:12px;font-weight:600;white-space:normal}
+label.is-answer::before{content:"正解は ";font-family:var(--font-ja);font-weight:500;color:var(--muted)}
+/* quiz.js：1回目の不正解（もう一度）・未回答 */
+label.is-model{color:var(--ink) !important;background:var(--accent-2-soft);padding:6px 14px;border-radius:12px;white-space:pre-line;text-align:left}
+label.is-model::before{content:"模範解答 ";font-family:var(--font-ja);font-weight:600;color:var(--accent-2)}
+html body input.kd-model, html body input.kd-self{background:#fff;color:var(--accent-2);border:1.5px solid var(--accent-2-soft)}
+label.is-retry{color:var(--ng) !important;background:var(--ng-soft);padding:6px 14px;border-radius:12px;font-weight:700;font-family:var(--font-ja)}
+label.is-empty{color:var(--muted) !important;background:var(--accent-2-soft);padding:6px 14px;border-radius:12px;font-family:var(--font-ja)}
+@media (prefers-reduced-motion:no-preference){label.is-retry{animation:kd-shake .3s}}
+/* 解答欄が複数ある問題：欄ごとの 〇/× */
+html body select.is-ok, html body input.is-ok{border-color:var(--ok) !important;box-shadow:0 0 0 3px var(--ok-soft)}
+html body select.is-ng, html body input.is-ng{border-color:var(--ng) !important;box-shadow:0 0 0 3px var(--ng-soft)}
+@keyframes kd-shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
 
 /* ---------- 文法 ---------- */
 .ui-grammar-list table{width:100%;max-width:560px;border:0 !important}
@@ -145,22 +156,22 @@ label.ui-ng::before{content:"正解は ";font-family:var(--font-ja);font-weight:
 .ui-hero{max-width:var(--maxw);margin:0 auto 16px;display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#fff 0%,var(--accent-soft) 100%);
   border-radius:20px;box-shadow:var(--shadow);padding:16px 18px}
 .ui-hero img{width:72px;height:auto;flex:none}
-.ui-hero .ui-eyebrow{font-size:.8rem;color:var(--muted);letter-spacing:.08em}
+.ui-hero .ui-eyebrow{font-size:.95rem;color:var(--muted);letter-spacing:.08em}
 .ui-hero h1, .ui-hero .ui-h{margin:0 !important;text-align:left;font-size:1.35rem !important;font-family:var(--font-zh);font-weight:700}
-.ui-hero .ui-sub{font-size:.9rem;color:var(--muted)}
+.ui-hero .ui-sub{font-size:.95rem;color:var(--muted)}
 .ui-grid{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 html body a.ui-card{display:flex;flex-direction:column;align-items:center;gap:6px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
   padding:14px 10px 12px;text-decoration:none;color:var(--ink);border:1.5px solid transparent;transition:transform .08s,border-color .15s}
 html body a.ui-card:hover{border-color:var(--accent);transform:translateY(-1px)}
 a.ui-card img{width:72px;height:72px;object-fit:contain}
 a.ui-card .ui-card-t{font-weight:700;font-size:1.05rem}
-a.ui-card .ui-card-s{font-size:.8rem;color:var(--muted)}
+a.ui-card .ui-card-s{font-size:.95rem;color:var(--muted)}
 .ui-lessons{grid-template-columns:1fr}
 html body a.ui-lesson{flex-direction:row;justify-content:flex-start;gap:12px;padding:12px 14px}
 .ui-lesson .ui-num{flex:none;width:44px;height:44px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800}
 .ui-lesson .ui-lt{display:flex;flex-direction:column;line-height:1.35;text-align:left}
 .ui-lesson .ui-lt b{font-family:var(--font-zh);font-size:1.1rem}
-.ui-lesson .ui-lt small{color:var(--muted)}
+.ui-lesson .ui-lt small{color:var(--muted);font-size:.95rem}
 .ui-lesson::after{content:"›";margin-left:auto;color:var(--faint);font-size:1.4rem}
 .ui-links{max-width:var(--maxw);margin:14px auto 0;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .ui-legacy-hidden{display:none !important}
@@ -168,13 +179,34 @@ html body a.ui-lesson{flex-direction:row;justify-content:flex-start;gap:12px;pad
 /* 宿題メニュー（-l.html） */
 .ui-hwmenu table:nth-of-type(2){width:100%;max-width:520px}
 .ui-hwmenu table:nth-of-type(2) td{padding:5px 0}
-.ui-hwmenu table:nth-of-type(2) a{display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:14px;box-shadow:var(--shadow-sm);padding:14px 16px;text-decoration:none;font-weight:700}
-.ui-hwmenu table:nth-of-type(2) a::after{content:"›";color:var(--faint);font-size:1.3rem}
+.ui-hwmenu table:nth-of-type(2) a:not(.ui-btn){display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:14px;box-shadow:var(--shadow-sm);padding:14px 16px;text-decoration:none;font-weight:700}
+.ui-hwmenu table:nth-of-type(2) a:not(.ui-btn)::after{content:"›";color:var(--faint);font-size:1.3rem}
 .ui-hwmenu table:first-of-type img{width:180px !important;height:auto !important}
 .ui-done table{max-width:600px}
 .ui-done td{padding:6px 0}
 
+/* 進み具合（ui.js）：宿題メニューの「3/5」、問題ページ上の「問題1（2/5）」 */
+.kd-prog{margin-left:auto;margin-right:10px;font-size:.95rem;font-weight:600;color:var(--muted);background:var(--accent-2-soft);border-radius:999px;padding:2px 10px}
+.kd-prog--done{color:var(--ok);background:var(--ok-soft)}
+.kd-prog--done::before{content:"✓ "}
+.kd-pill{max-width:var(--maxw);margin:0 auto 8px;display:flex;align-items:center;gap:8px;font-weight:700;color:var(--accent)}
+.kd-pill-ok{color:var(--ok)}
+.kd-bar{flex:1;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.kd-bar i{display:block;height:100%;width:0;background:var(--ok);transition:width .3s}
+/* 再生ボタンの状態（player.js）：読み込み中 .kd-wait、再生中 .kd-on */
+html body input.kd-on{background:var(--accent-2);color:#fff;border-color:var(--accent-2)}
+html body input.kd-wait{animation:kd-pulse 1s ease-in-out infinite}
+@keyframes kd-pulse{50%{opacity:.6}}
+/* お知らせ（音声を読み込めなかったとき等） */
+.kd-mobile-note{display:none;margin-top:8px;font-size:.95rem;color:var(--muted)}
+.kd-toast{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;pointer-events:none;
+  background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:1rem;box-shadow:var(--shadow);transition:opacity .2s,transform .2s;z-index:50;max-width:90vw}
+.kd-toast.kd-show{opacity:1;transform:translate(-50%,0)}
+
 @media (max-width:719px){
+  /* 宿題提出（Excel）はスマホでは開きにくいので控えめに */
+  html body input[value="宿題提出"]{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+  .kd-mobile-note{display:block}
   html body table[border="1"] tr{display:flex;flex-wrap:wrap;align-items:center;justify-content:center}
   html body table[border="1"] td{flex:1 1 auto;border-bottom:0;text-align:center}
   html body table[border="1"] tr{border-bottom:1px solid var(--line)}
@@ -182,6 +214,13 @@ html body a.ui-lesson{flex-direction:row;justify-content:flex-start;gap:12px;pad
   html body table[border="1"] tbody{display:block}
   .ui-vocab .ui-text td{padding:0 2px}
   .ui-vocab td[id="td_ch"] lable{font-size:1.2rem}
+  /* 単語ページ「全部」表示でも横にはみ出さない：列幅を画面に合わせ、長い語は欄の中で折り返す */
+  .ui-vocab table.ui-text{table-layout:fixed;width:100%}
+  .ui-vocab .ui-text td{white-space:normal}
+  .ui-vocab td[id^="td_"] lable{display:flex !important;align-items:center;height:3.2rem;line-height:1.2 !important;overflow:hidden}
+  .ui-vocab td[id="td_ch"] lable{font-size:1.15rem}
+  .ui-vocab td[id="td_py"] lable{font-size:.95rem}
+  .ui-vocab td[id="td_jp"]{min-width:0}
 }
 @media (min-width:720px){
   html body{font-size:18px;padding-top:20px}

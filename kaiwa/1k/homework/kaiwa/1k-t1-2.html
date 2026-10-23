@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>第１課-単語2</title>
@@ -23,12 +23,9 @@ a:visited {
 	color: #03F;
 }
 </style>
-<script>
-
-</script>
 <!-- ui-skin:start -->
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<link rel="stylesheet" href="../../../assets/ui/ui.css?v=20261023" />
+<link rel="stylesheet" href="../../../assets/ui/ui.css?v=20261024" />
 <!-- ui-skin:end -->
 </head>
 <body>
@@ -149,181 +146,12 @@ body{background-color:lightblue; font-family:sans-serif;}
 <audio id="audiolocal" ></audio>
 <!-- AUDIO CREATE END -->
 
-<script>
-
-// メディアプレイヤー
-var oAudio  = document.getElementById('audiolocal');
-// var audio = document.createElement("audio");
-
-// 前回文字ID
-var idper = "";
-
-// 言語表示
-// lang:dropdownlistの選択値
-function setViewItem(lang) {
-    //TRのID
-    var p_strIdCh = document.getElementById("td_ch");
-    var p_strIdJp = document.getElementById("td_jp");
-    var p_strIdPy = document.getElementById("td_py");
-    if (lang == "chinese") {
-        // 引数=chineseの時
-        // TRを活性に設定
-        p_strIdCh.style.display = '';
-        // TRを非活性に設定
-        p_strIdJp.style.display = 'none';
-        // TRを非活性に設定
-        p_strIdPy.style.display = 'none';
-    } else if (lang == "japanese") {
-        // 引数=japaneseの時
-        // TRを非活性に設定
-        p_strIdCh.style.display = '';
-        // TRを活性に設定
-        p_strIdJp.style.display = '';
-        // TRを非活性に設定
-        p_strIdPy.style.display = 'none';
-    } else if (lang == "pinyin") {
-        // 引数=pinyinの時
-        // TRを非活性に設定
-        p_strIdCh.style.display = '';
-        // TRを非活性に設定
-        p_strIdJp.style.display = 'none';
-        // TRを活性に設定
-        p_strIdPy.style.display = '';
-        }else if (lang == "everything") {
-        // 引数=pinyinの時
-        // TRを非活性に設定
-        p_strIdCh.style.display = '';
-        // TRを非活性に設定
-        p_strIdJp.style.display = '';
-        // TRを活性に設定
-        p_strIdPy.style.display = '';
-}};
-
-
-// 全部再生
-function playAllRadioList(raditCnt) {
-	// radioファイル配列
-    var radioArgs = new Array('1k-t-10', '1k-t-11', '1k-t-12', '1k-t-13', '1k-t-14', '1k-t-15', '1k-t-16', '1k-t-17', '1k-t-18');
-   
-    // ファイル再生を呼出
-    // 0は固定値
-	doRadioFile(radioArgs, 0);
-};
-
-// ファイル再生
-function doRadioFile(radioArgs, index) {
-  
-  // 前回文字の色を戻り
-    addColorToStr(idper, 'black');
-
-    
-    // ファイル終了判断
-    if (index >= radioArgs.length) {
-        // 再生終了
-        return;
-    }
-	// '.mp3'
-	var lastStr = '.mp3';
-    // 本ファイル名
-	var filename = radioArgs[index].concat(lastStr);
-	
-
-	// フォルダ
-	var folderPath = 'sound/';
-	// フルパス
-	var filePath = folderPath.concat(filename);
-	
-	// NEW 新プレヤー
-	// oAudio = new Audio(filePath)
-
-	oAudio.src = filePath;
-    // ファイル再生処理
-	oAudio.play();
-
-    // 前回文字IDを設定
-	idper = radioArgs[index];
-
-    // 文字色を設定
-    addColorToStr(radioArgs[index], 'red');
-
-
-	oAudio.addEventListener("ended", function(){
-        // 文字色を削除
-        addColorToStr(radioArgs[index], 'black');
-        index = index+1;
-        doRadioFile(radioArgs, index);
-	});
-
-};
-
-// アンダーバーを追加
-function addColorToStr(strId, colorStr) {
-    var strCh = "_ch";
-    var strIdCh = strId.concat(strCh);
-    
-    var p_strIdCh = document.getElementById(strIdCh);
-    if (p_strIdCh == undefined) {
-        return;
-    }
-    
-    // css追加
-    p_strIdCh.style.color = colorStr;
-   
-};
-
-    // 指定されたファイルを再生
-    function fileStart(id) {
-
-    // 前回文字の色を戻り
-    addColorToStr(idper, 'black');
-
-    // ファイル名称を取得
-    var strs = id.split("_");
-    if (strs.length > 0) {
-		// '.mp3'
-		var lastStr = '.mp3';
-	    // 本ファイル名
-		var filename = strs[0].concat(lastStr);
-		// var oAudio  = document.createElement("oAudio ");
-		// フォルダ
-		var folderPath = 'sound/';
-		// フルパス
-		var filePath = folderPath.concat(filename);
-		oAudio .src = filePath;
-	    // ファイル再生処理
-		oAudio .play();
-
-	// 前回文字IDを設定
-		idper = strs[0];
-	    // 文字色を設定
-	    addColorToStr(strs[0], 'red');
-		oAudio .addEventListener("ended", function(){
-	    　　// 文字色を削除
-	        addColorToStr(strs[0], 'black');
-	        
-	        { 
-    // 前回radio停止
-    oAudio.pause();
-    // 前回文字の色を戻り
-    addColorToStr(idper, 'black');
-} 
-		});
-    }
-}
-
-// radioを終了
-function myrefresh() 
-{ 
-    // 前回radio停止
-    oAudio .pause();
-    // 前回文字の色を戻り
-    addColorToStr(idper, 'black');
-} 
-
-</script>
+<!-- kd-js:start -->
+<script src="../../../assets/js/player.js?v=20261024"></script>
+<!-- kd-js:end -->
 <!-- ui-skin:start -->
-<script src="../../../assets/ui/lessons.js?v=20261023"></script>
-<script src="../../../assets/ui/ui.js?v=20261023"></script>
+<script src="../../../assets/ui/lessons.js?v=20261024"></script>
+<script src="../../../assets/ui/ui.js?v=20261024"></script>
 <!-- ui-skin:end -->
 </body>
 </html>
