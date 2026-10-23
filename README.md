@@ -32,8 +32,15 @@ kaiwa/  dokai/             两个站点，结构完全相同
   assets/ui/ui.css, ui.js  ★ 共通：外观（手机适配、卡片、按钮）
   assets/ui/lessons.js     课名一览 + 问题集信息（每个站点各一份）
 tools/                     检查・维护脚本（Python 3，无需额外安装）
+docs/content_fixes_for_teacher.md  给老师的内容修改清单（内容问题，代码没改）
+docs/archive/dokai_dokai_xlsx/     旧副本 dokai/dokai/ 的 6 个 xlsx（保存用，页面不引用）
 .github/workflows/check.yml  每次 push 自动检查（不影响网页发布）
 ```
+
+**xlsx（宿題提出用 Excel）**：正式目录里共 **28 个**（`kaiwa/Nk/homework/N.xlsx` 14 个 + `dokai/Nk/homework/N.xlsx` 14 个，第1〜14課），
+页面上的链接只指向这 28 个。原来 main 里还有一个没被任何页面引用的旧副本目录 `dokai/dokai/`，其中 8〜13 課的 6 个 xlsx
+**没有删掉，而是原样移到了** `docs/archive/dokai_dokai_xlsx/`（git 记录为 R100 改名，内容 100% 相同；
+和正式版只差 OneDrive 自动写入的 GUID 元数据，详见该目录的 README）。老师确认不需要后可以删除该目录。
 
 `kaiwa/assets/js`・`kaiwa/assets/ui/ui.css`・`ui.js` 是原本，`dokai` 下是副本。
 **只改 kaiwa 那份，然后运行** `python3 tools/sync_assets.py` 复制到 dokai。
