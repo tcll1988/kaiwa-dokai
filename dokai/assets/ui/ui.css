@@ -1,0 +1,194 @@
+/* ==========================================================
+   中国語 会話/読解 宿題サイト — 共通UIスキン (drop-in)  v2026-10-23
+   ・既存HTMLの本文・音声・採点ロジック・ファイル名は一切変更しない
+   ・<head> に本CSS、</body> 前に ui.js を1行ずつ追加するだけ
+   ・外すときはその2行（+viewport）を消せば元の見た目に戻る
+   ========================================================== */
+:root{
+  --bg:#f5f7f6; --card:#fff; --ink:#1f2933; --muted:#5f6b7a; --faint:#8b95a3;
+  --line:#e3e7eb; --accent:#2f6f6a; --accent-soft:#e5f1ef; --accent-2:#3d4f8f;
+  --accent-2-soft:#eceffa; --ok:#187a42; --ok-soft:#e6f6ec; --ng:#c2410c; --ng-soft:#fdeee6;
+  --hl:#fff3bf; --radius:16px; --radius-sm:10px;
+  --shadow:0 6px 20px rgba(31,41,51,.07); --shadow-sm:0 1px 4px rgba(31,41,51,.08);
+  --font-ja:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Noto Sans CJK JP","Yu Gothic UI","Yu Gothic","Meiryo",system-ui,sans-serif;
+  --font-zh:"PingFang SC","Hiragino Sans GB","Noto Sans SC","Noto Sans CJK SC","Source Han Sans SC","Microsoft YaHei",var(--font-ja);
+  --font-py:"Noto Sans","Segoe UI","Helvetica Neue",Arial,sans-serif;
+  --tap:44px; --maxw:860px;
+}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html body{
+  background:var(--bg) !important; color:var(--ink); margin:0;
+  font-family:var(--font-ja) !important; font-size:17px; line-height:1.7;
+  padding:12px max(14px,env(safe-area-inset-right)) 32px max(14px,env(safe-area-inset-left));
+  overflow-wrap:anywhere;
+}
+/* 旧来の <font face="SimSun/MS明朝"> を無効化して端末に合うフォントへ */
+html body font{font-family:inherit !important}
+html body font[size="1"]{font-size:.8rem} html body font[size="2"]{font-size:.9rem}
+html body font[size="3"]{font-size:1rem}  html body font[size="4"]{font-size:1.1rem}
+html body font[size="5"]{font-size:1.2rem} html body font[size="6"]{font-size:1.45rem}
+html body font[size="+2"]{font-size:1.3rem}
+html body font[size="10"],html body font[size="15"]{font-size:1.25rem}
+:lang(zh), .ui-zh{font-family:var(--font-zh) !important}
+img{max-width:100%;height:auto}
+h1{font-size:1.35rem !important;line-height:1.4;margin:.4em auto .6em;text-align:center;letter-spacing:.02em}
+h6:empty{display:none}
+
+/* ---------- リンク / ボタン ---------- */
+html body a, html body a:link, html body a:visited{color:var(--accent-2);font-size:inherit;text-underline-offset:3px}
+html body a:hover{color:var(--accent)}
+:focus-visible{outline:3px solid rgba(61,79,143,.45) !important;outline-offset:2px;border-radius:6px}
+html body input[type=button], html body input[type=submit], html body button{
+  -webkit-appearance:none;appearance:none;font:600 1rem/1 var(--font-ja) !important;
+  min-height:var(--tap) !important;height:auto !important;width:auto !important;
+  padding:0 18px !important;margin:4px;border:0;border-radius:999px;cursor:pointer;
+  background:var(--accent);color:#fff;box-shadow:var(--shadow-sm);transition:transform .06s,filter .15s
+}
+html body input[type=button]:hover, html body input[type=submit]:hover{filter:brightness(1.08)}
+html body input[type=button]:active, html body input[type=submit]:active{transform:translateY(1px)}
+html body input[value="終了"]{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+html body input[value="再生"]{background:var(--accent-2);min-width:120px}
+html body input[value="再生"]::before{content:""}
+html body select{
+  font:500 1.05rem var(--font-ja) !important;min-height:var(--tap);padding:0 36px 0 12px;
+  border:1.5px solid var(--line);border-radius:var(--radius-sm);background:#fff;color:var(--ink);max-width:100%
+}
+html body input[type=text]{
+  width:100% !important;max-width:100%;box-sizing:border-box;height:48px !important;
+  font:1.15rem var(--font-zh) !important;padding:0 12px;border:1.5px solid var(--line);
+  border-radius:var(--radius-sm);background:#fff
+}
+html body input[type=text]:focus, html body select:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px var(--accent-soft)}
+
+/* ---------- 表（レイアウト用 table を中央の読み物カラムに） ---------- */
+html body table{border-collapse:separate;border-spacing:0;max-width:100%}
+html body table[align=center], html body div[align=center]{margin-left:auto;margin-right:auto}
+html body table[width], html body td[width], html body th[width]{width:auto}
+html body td, html body th{font-size:inherit}
+.ui-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+
+/* ---------- ナビ（戻る / 前へ / 次へ） ---------- */
+.ui-navrow{display:flex !important;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;padding:14px 0 4px}
+html body a.ui-btn{display:inline-flex;align-items:center;justify-content:center;gap:.3em;min-height:var(--tap);
+  padding:0 18px;border-radius:999px;background:#fff;border:1.5px solid var(--line);color:var(--ink);
+  text-decoration:none;font-weight:600;font-size:1rem}
+html body a.ui-btn:hover{border-color:var(--accent);color:var(--accent)}
+html body a.ui-btn--next{background:var(--accent);border-color:var(--accent);color:#fff}
+html body a.ui-btn--next:hover{color:#fff;filter:brightness(1.08)}
+a.ui-btn--back::before{content:"‹";font-size:1.2em;line-height:1}
+a.ui-btn--prev::before{content:"‹";font-size:1.2em;line-height:1}
+a.ui-btn--next::after{content:"›";font-size:1.2em;line-height:1}
+
+/* ---------- 本文・単語（音声つき読み物） ---------- */
+html body #title{position:sticky;top:0;z-index:20;margin:0 auto 14px;background:rgba(255,255,255,.94);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:var(--radius);box-shadow:var(--shadow);padding:6px 8px}
+html body #title tbody, html body #title tr{display:flex;flex-wrap:wrap;gap:4px 6px;justify-content:center;align-items:center}
+html body #title td{display:block;padding:0}
+html body #title lable{font-size:.85rem;color:var(--muted)}
+html body #title a{display:inline-flex;align-items:center;min-height:var(--tap);padding:0 10px;font-weight:600}
+lable[onclick]{cursor:pointer;border-radius:8px;padding:2px 4px;transition:background .15s;-webkit-tap-highlight-color:transparent}
+lable[onclick]:hover{background:var(--accent-soft)}
+/* 再生中（元スクリプトが style="color: red" を付ける）→ 蛍光ペン表示 */
+html body lable[style*="red"], html body lable[style*="red"] font{color:var(--ink) !important;background:var(--hl);box-shadow:0 0 0 3px var(--hl)}
+lable[id$="_ch"]{font-family:var(--font-zh) !important;font-size:1.45rem;line-height:1.9;letter-spacing:.03em}
+lable[id$="_py"]{font-family:var(--font-py) !important;color:var(--accent);font-size:1.08rem;letter-spacing:.01em}
+lable[id$="_jp"]{color:var(--muted);font-size:.98rem}
+lable[id$="_ch"] font, lable[id$="_py"] font, lable[id$="_jp"] font{font-size:inherit !important}
+.ui-reader .ui-text{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px;margin:0 auto;width:100%;max-width:var(--maxw);box-sizing:border-box}
+.ui-reader .ui-text td{padding:2px 4px}
+.ui-reader tr[id^="td_ch_"] > td{padding-top:12px}
+.ui-reader tr[id^="td_py_"] > td{padding-top:0}
+.ui-reader tr[id^="td_jp_"] > td{padding-bottom:6px;border-bottom:1px dashed var(--line)}
+/* 単語ページ：3列（中・拼音・日）の行がずれないよう行高をそろえる */
+.ui-vocab .ui-text td{vertical-align:top;white-space:nowrap}
+.ui-vocab td[id^="td_"] lable{display:inline-block;line-height:2.6rem;font-size:1.15rem}
+.ui-vocab td[id="td_ch"] lable{font-size:1.4rem}
+.ui-vocab td[id^="td_"] br{display:none}
+.ui-vocab td[id="td_jp"]{white-space:normal;min-width:7em}
+.ui-vocab td[id="td_jp"] lable{display:flex !important;align-items:center;line-height:1.25 !important;font-size:.9rem !important;overflow:hidden}
+.ui-vocab td[id^="td_"] lable{display:block;height:2.6rem;border-bottom:1px solid var(--line);border-radius:0}
+
+/* ---------- 練習問題 ---------- */
+.ui-exercise > div[align=center] p{max-width:var(--maxw);margin:0 auto;text-align:left}
+.ui-exercise > div[align=center] p font{display:block;background:var(--accent-2-soft);border-radius:var(--radius);padding:12px 14px 12px 14px;font-size:1.02rem !important;line-height:1.7}
+.ui-exercise > div[align=center] p img{float:right;width:64px !important;height:auto !important;margin:-8px -4px 4px 8px}
+.ui-exercise > table:first-of-type td[height]{height:4px !important}
+html body table[border="1"]{border:0 !important;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+  width:100%;max-width:var(--maxw);overflow:hidden;font-size:1.05rem !important}
+html body table[border="1"] td, html body table[border="1"] th{border:0;border-bottom:1px solid var(--line);padding:10px 12px;font-family:var(--font-zh)}
+html body table[border="1"] tr:last-child td{border-bottom:0}
+html body table[border="1"] td font[size="6"]{font-size:1.35rem}
+/* 採点結果（〇 / 正解表示） */
+label[id$="_R"]{display:inline-block;min-height:1.6em;font-family:var(--font-zh)}
+label.ui-ok{color:var(--ok) !important;background:var(--ok-soft);padding:6px 14px;border-radius:999px;font-weight:700}
+label.ui-ok::after{content:"  正解！";font-family:var(--font-ja)}
+label.ui-ng{color:var(--ng) !important;background:var(--ng-soft);padding:6px 14px;border-radius:12px;font-weight:600;white-space:normal}
+label.ui-ng::before{content:"正解は ";font-family:var(--font-ja);font-weight:500;color:var(--muted)}
+
+/* ---------- 文法 ---------- */
+.ui-grammar-list table{width:100%;max-width:560px;border:0 !important}
+.ui-grammar-list th{border:0 !important;background:var(--card);padding:0 !important;height:auto !important}
+.ui-grammar-list tr{display:flex;align-items:stretch;margin:0 0 10px;box-shadow:var(--shadow-sm);border-radius:14px;overflow:hidden;background:#fff}
+.ui-grammar-list th:first-child{width:52px !important;min-width:52px;display:flex;align-items:center;justify-content:center;background:var(--accent);color:#fff;font-weight:700}
+.ui-grammar-list th:last-child{flex:1;text-align:left}
+.ui-grammar-list th a{display:block;padding:14px 16px;font-family:var(--font-zh);text-decoration:none}
+.ui-grammar-list h1 a{font-size:1rem}
+.ui-grammar table{width:100% !important;max-width:var(--maxw);background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:10px 14px}
+.ui-grammar td{padding:4px 2px;line-height:1.8}
+.ui-grammar td > font{display:block}
+.ui-grammar td > font[face="sinsun"][size="4"], .ui-grammar td > font[face="simsun"][size="4"]{font-family:var(--font-zh) !important;font-size:1.25rem;margin-top:8px}
+.ui-grammar td > font[size="3"][face="sinsun"], .ui-grammar td > font[size="3"][face="simsun"]{color:var(--accent);font-family:var(--font-py) !important}
+.ui-grammar td > font[face="ms-mincho"]{color:var(--muted);border-left:3px solid var(--accent-soft);padding-left:8px}
+.ui-grammar div[align=center] p font{font-size:1.3rem !important;font-weight:700}
+
+/* ---------- 課ハブ / コース一覧（ui.js がカードを生成） ---------- */
+.ui-hero{max-width:var(--maxw);margin:0 auto 16px;display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#fff 0%,var(--accent-soft) 100%);
+  border-radius:20px;box-shadow:var(--shadow);padding:16px 18px}
+.ui-hero img{width:72px;height:auto;flex:none}
+.ui-hero .ui-eyebrow{font-size:.8rem;color:var(--muted);letter-spacing:.08em}
+.ui-hero h1, .ui-hero .ui-h{margin:0 !important;text-align:left;font-size:1.35rem !important;font-family:var(--font-zh);font-weight:700}
+.ui-hero .ui-sub{font-size:.9rem;color:var(--muted)}
+.ui-grid{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+html body a.ui-card{display:flex;flex-direction:column;align-items:center;gap:6px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:14px 10px 12px;text-decoration:none;color:var(--ink);border:1.5px solid transparent;transition:transform .08s,border-color .15s}
+html body a.ui-card:hover{border-color:var(--accent);transform:translateY(-1px)}
+a.ui-card img{width:72px;height:72px;object-fit:contain}
+a.ui-card .ui-card-t{font-weight:700;font-size:1.05rem}
+a.ui-card .ui-card-s{font-size:.8rem;color:var(--muted)}
+.ui-lessons{grid-template-columns:1fr}
+html body a.ui-lesson{flex-direction:row;justify-content:flex-start;gap:12px;padding:12px 14px}
+.ui-lesson .ui-num{flex:none;width:44px;height:44px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800}
+.ui-lesson .ui-lt{display:flex;flex-direction:column;line-height:1.35;text-align:left}
+.ui-lesson .ui-lt b{font-family:var(--font-zh);font-size:1.1rem}
+.ui-lesson .ui-lt small{color:var(--muted)}
+.ui-lesson::after{content:"›";margin-left:auto;color:var(--faint);font-size:1.4rem}
+.ui-links{max-width:var(--maxw);margin:14px auto 0;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.ui-legacy-hidden{display:none !important}
+
+/* 宿題メニュー（-l.html） */
+.ui-hwmenu table:nth-of-type(2){width:100%;max-width:520px}
+.ui-hwmenu table:nth-of-type(2) td{padding:5px 0}
+.ui-hwmenu table:nth-of-type(2) a{display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:14px;box-shadow:var(--shadow-sm);padding:14px 16px;text-decoration:none;font-weight:700}
+.ui-hwmenu table:nth-of-type(2) a::after{content:"›";color:var(--faint);font-size:1.3rem}
+.ui-hwmenu table:first-of-type img{width:180px !important;height:auto !important}
+.ui-done table{max-width:600px}
+.ui-done td{padding:6px 0}
+
+@media (max-width:719px){
+  html body table[border="1"] tr{display:flex;flex-wrap:wrap;align-items:center;justify-content:center}
+  html body table[border="1"] td{flex:1 1 auto;border-bottom:0;text-align:center}
+  html body table[border="1"] tr{border-bottom:1px solid var(--line)}
+  html body table[border="1"] td:has(input[type=text]){flex:1 1 100%}
+  html body table[border="1"] tbody{display:block}
+  .ui-vocab .ui-text td{padding:0 2px}
+  .ui-vocab td[id="td_ch"] lable{font-size:1.2rem}
+}
+@media (min-width:720px){
+  html body{font-size:18px;padding-top:20px}
+  .ui-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .ui-lessons{grid-template-columns:repeat(2,minmax(0,1fr))}
+  lable[id$="_ch"]{font-size:1.6rem}
+  .ui-hero img{width:96px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important}}
+@media print{#title{position:static;box-shadow:none} body{background:#fff !important}}

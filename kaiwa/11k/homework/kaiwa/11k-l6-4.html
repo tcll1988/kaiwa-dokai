@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>第11課練習問題6-4</title>
+<style>
+body{background-color:lightblue; font-family:sans-serif;}
+a {
+	font-size: 18px;
+}
+td {
+	font-family: SimSun;
+}
+select {
+	font-size: 24px;
+}
+input {
+	font-family: SimSun;
+}
+a:link {
+	color: #03F;
+}
+a:visited {
+	color: #03F;
+}
+</style>
+<script type="text/javascript" src="11k-a.js"></script>
+<script>
+
+// num1:大問題No, num2: 小問題No
+function doRight(num1, num2){
+  // 正解
+  var rightAns = doFindAnswer(num1, num2);
+  // 問題ID
+  var questionId = num1 + '_' + num2;
+  
+  // 学生の答え
+  var stuAns = document.getElementById(questionId).value;
+  
+  // 答え表示
+  var resultVie = questionId + '_R';
+  
+  // 結果比較
+  if (rightAns == stuAns) {
+    document.getElementById(resultVie).innerText = "〇";
+    document.getElementById(resultVie).style.color = "red";
+  } else {
+    document.getElementById(resultVie).innerText = rightAns;
+	document.getElementById(resultVie).style.color = "black";
+  }
+   
+};
+</script>
+<!-- ui-skin:start -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<link rel="stylesheet" href="../../../assets/ui/ui.css?v=20261023" />
+<!-- ui-skin:end -->
+</head>
+<body>
+   <table>
+    <tr><td height="50"></td></tr>
+   </table>
+   <div align="center"> 
+     <p><font size="5" face="msmincho"><img src="images/7.png" width="106" height="75" /></a>言葉の順序を並べ変え、次の日本語意味の中国語にしなさい。</font></p>
+     <p>&nbsp;</p>
+   </div>
+<table border="1" style="font-size:30px;"  align="center">
+  <tr><!--問題番号編集可能 -->
+  <td align="center"> <font size="5">④</font></td>
+ <td align="center"> <font size="4" face="msmincho">ここからまっすぐに前のほうへ行ってください。 </font></td>
+ </tr>
+
+ <tr>
+ <td colspan="12">
+ <font size="4" face="msmincho">1往 2一直 3从 4走 5这儿 6前 
+</font>
+ </td>
+ </tr>
+ <tr>
+ <td align="center" colspan="2"><input type="text" id="6_4" style="height:50px; font-size:30px; width=150px"/>
+ </td>
+  </tr>
+  <tr><!--問題番号編集可能 -->
+    <td colspan="12" align="center">&nbsp;<label id="6_4_R"/></label>   
+    </td>
+  </tr>
+  <tr>
+  <td colspan="12" align="center">
+    <input type="button" value="確認" onclick="doRight(6,4)" style=" font-size:400px: width: 120px; height: 30px;" />  
+    </td>   
+    </tr>
+<tr>
+<td align="center" colspan="5"><a href="11k-l.html">戻る</a>
+   　　　　　　　　<a href="11k-l6-3.html">前へ</a>
+   　　　　　　　　<a href="11k-l6-5.html">次へ</a>
+</td>
+</tr> 
+</table>
+
+<!-- ui-skin:start -->
+<script src="../../../assets/ui/lessons.js?v=20261023"></script>
+<script src="../../../assets/ui/ui.js?v=20261023"></script>
+<!-- ui-skin:end -->
+</body>
+</html>

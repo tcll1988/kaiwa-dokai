@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>第11課練習問題5-5</title>
+<style>
+body{background-color:lightblue; font-family:sans-serif;}
+a {
+	font-size: 18px;
+}
+td {
+	font-family: SimSun;
+}
+select {
+	font-size: 24px;
+}
+a:link {
+	color: #03F;
+}
+a:visited {
+	color: #03F;
+}
+</style>
+<script type="text/javascript" src="11k-a.js"></script>
+<script>
+
+// num1:大問題No, num2: 小問題No
+function doRight(num1, num2){
+  // 正解
+  var rightAns = doFindAnswer(num1, num2);
+  // 問題ID
+  var questionId = num1 + '_' + num2;
+  
+  // 学生の答え
+  var stuAns = document.getElementById(questionId).value;
+  
+  // 答え表示
+  var resultVie = questionId + '_R';
+  
+  // 結果比較
+  if (rightAns == stuAns) {
+    document.getElementById(resultVie).innerText = "〇";
+    document.getElementById(resultVie).style.color = "red";
+  } else {
+    document.getElementById(resultVie).innerText = rightAns;
+	document.getElementById(resultVie).style.color = "black";
+  }
+   
+};
+</script>
+<!-- ui-skin:start -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<link rel="stylesheet" href="../../../assets/ui/ui.css?v=20261023" />
+<!-- ui-skin:end -->
+</head>
+<body>
+   <table>
+    <tr><td height="50"></td></tr>
+   </table>
+   <div align="center"> 
+     <p><font size="5"> <a><img src="images/7.png" alt="" width="120" height="92" /></a>問5下の短文を読んで、①～⑤までの質問をそれぞれの下に示してあるA～Dの中から1つ選びなさい。</font></p>
+     <p>&nbsp;</p>
+   </div>
+<table border="1" style="font-size:30px;"  align="center">
+ <tr>
+ <td colspan="5" width="300"> <font size="5" face="simsun">　佐藤今天没来上课，他感冒了。前天他开始咳嗽，嗓子疼，还有点儿发烧。但昨天上午他来上课了，也没迟到。昨天来学校后，他咳嗽得厉害，所以中午他就走了。昨天他只上了两节课，下午的两节课他没上。昨天下午，他去医院看病了，大夫说他感冒了，让他在家好好儿休息。明天是星期六，我想去佐藤家看看他，告诉他今天四节课都学习了什么。</font>  </td>
+ </tr>
+  <tr>
+  <td width="47">
+ <font size="5"></font>
+  </td>
+  <td colspan="4"> <font size="5">佐藤病了几天了？</font>  </td>
+  </tr>
+  <tr>
+  <td>A</td>
+  <td width="178"><font face="SimSun" size="5">一天了</font></td>
+  <td width="38">B</td>
+  <td width="213"><font face="SimSun" size="5">两天了</font></td>
+    </tr>
+      <tr>
+  <td>C</td>
+  <td><font face="SimSun" size="5">三天了</font></td>
+  <td>D</td>
+  <td><font face="SimSun" size="5">四天了</font></td>
+    </tr>
+ <tr><!--問題番号編集可能 -->
+  <td class="selecter" colspan="5" align="center">
+	     <select name="select" onchange="setViewItem(this.value)" id="5_5">
+  	       <option value="0" selected>&nbsp; </option>
+           <option value="A">A </option>
+	       <option value="B">B </option>
+	       <option value="C">C </option>
+	       <option value="D">D </option>
+	     </select>
+    </td>
+  </tr>
+  <tr><!--問題番号編集可能 -->
+    <td colspan="6" align="center">&nbsp;<label id="5_5_R"/></label>   
+     </td>
+  </tr>
+  <tr>
+  <td colspan="5">　<!--問題番号編集可能 -->　　　　
+    <input type="button" value="確認" onclick="doRight(5,5)" style=" font-size:400px: width: 120px; height: 30px;" />
+　　</td> 
+　　<tr>
+<td align="center" colspan="5">　　　　<a href="11k-l.html">戻る</a>　　　　　　<a href="11k-l5-4.html">前へ</a>　　　　　　<a href="11k-l-o.html">次へ</a>
+</td>
+</tr>    
+  </table>
+<!-- ui-skin:start -->
+<script src="../../../assets/ui/lessons.js?v=20261023"></script>
+<script src="../../../assets/ui/ui.js?v=20261023"></script>
+<!-- ui-skin:end -->
+</body>
+</html>

@@ -1,0 +1,651 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>第13課-本文</title>
+<style type="text/css">
+.main {
+    font-family: SimSun;
+}
+.japanese {
+    font-family: ＭＳ 明朝;
+}
+.chinese {
+    font-family: SimSun;
+}
+body,td,th {
+    font-size: 24px;
+}
+a:link {
+    color: #03F;
+}
+a:visited {
+    color: #03F;
+}
+</style>
+<script>
+
+</script>
+<!-- ui-skin:start -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<link rel="stylesheet" href="../../../assets/ui/ui.css?v=20261023" />
+<!-- ui-skin:end -->
+</head>
+<body>
+
+</h6>
+<!--背景の色 -->
+<style>
+body{background-color:lightblue; font-family:sans-serif;}
+</style>
+<div>
+<h1 align="center"><font face="simsun">
+第13課 妹妹打扫屋子</font>
+<h1>
+</div>
+<div>
+<table id="title" align="center">
+  <tr>
+      <td>
+          <lable>表示選択</lable>
+      </td>
+      <td class="selecter">
+          <select name="select" onchange="setViewItem(this.value)" id="language_1">
+            <option value="chinese" selected>中国語 </option>
+            <option value="japanese">中国語+日本語 </option>
+            <option value="pinyin">中国語+ピンイン </option>
+            <option value="everything" >全部 </option>
+          </select>
+     </td>
+<td>
+          <input type="button" value="全文朗読" onclick="playAllRadioList(3)"/>
+      </td>
+<td>
+          <input type="button" value="終了" onclick="myrefresh()"/>
+      </td>
+     <td> <a href="../../13k.html">戻る</a></td>
+  </tr>
+</table>
+</div>
+<div>
+<table align="center">
+
+<tr height="10"></tr><tr><td align="center"></td></tr><tr height="10"></tr>
+
+  <tr id="td_ch_1">
+     <td>
+    <lable id="d1-13k-h-1_ch" onclick="fileStart(this.id)"><font face="simsun" size="5">妹妹的性格开朗、活泼，爱说爱笑。</font></lable>
+        <br>
+    </td>
+  </tr>
+   
+  <tr id="td_py_1" style="display:none">
+   <td>
+    <lable id="d1-13k-h-1_py" onclick="fileStart(this.id)"><font face="simsun" size="3">Mèimèi de xìnggé kāilǎng huópō, ài shuō ài xiào.</font></lable>  
+      </td>
+  </tr>
+  
+  
+  <tr id="td_jp_1" style="display:none">
+   <td>
+   <lable id="d1-13k-h-1_jp" onclick="fileStart(this.id)"><font size="3" face"mincho">妹の性格が明るくて、活発で、よくしゃべったり、笑ったりします。</font></lable>    
+          </td>
+  </tr>
+ 
+
+   <tr id="td_ch_2">
+   <td>
+    <lable id="d1-13k-h-2_ch" onclick="fileStart(this.id)"><font face="simsun" size="5">她不仅爱和朋友聊天儿，而且还愿意帮助朋友，所以大家都愿意和她交朋友，但就是不愿意来我家，因为她的屋子太脏，太乱了。</font></lable>
+          </td>
+  </tr>
+
+  
+  <tr id="td_py_2" style="display:none">
+   <td>
+    <lable id="d1-13k-h-2_py" onclick="fileStart(this.id)"><font size="3" face="simsun" >Tā bùjǐn ài hé péngyou liáotiānr, érqiě hái yuànyì bāngzhù péngyou,
+suǒyǐ dàjiā dōu yuànyì hé tāj iāo péngyǒu,dàn jiùshì bú yuànyì lái wǒ jiā,yīnwèi tā de wūzi tài zāng tài luàn le.</font></lable> 
+   </td>
+  </tr>
+    <tr id="td_jp_2" style="display:none">
+   <td>
+    <lable id="d1-13k-h-2_jp" onclick="fileStart(this.id)"><font size="3" face"mincho" >彼女は友達としゃべるのが好きなだけでなく、また喜んで友達を助けます。だから、みんなは彼女と友達になりたがっていますが、ただうちに来るのがあまり好きではないです。なぜなら彼女の部屋はとても汚くて、とてもぐちゃぐちゃだからです。</font></lable>    
+       </td>
+  </tr>
+
+    <tr id="td_ch_3">
+   <td>
+    <lable id="d1-13k-h-3_ch" onclick="fileStart(this.id)"><font face="simsun" size="5">她从来不擦桌子，也从来不擦地，衣服、书等到处扔。</font></lable>
+    <lable id="d1-13k-h-4_ch" onclick="fileStart(this.id)"><font face="simsun" size="5">总之，她的屋子到处是书，到处是杂志，到处是脏衣服。</font></lable>
+       </td>
+  </tr>
+  
+  <tr id="td_py_3" style="display:none">
+   <td id="ch_1">
+    <lable id="d1-13k-h-3_py" onclick="fileStart(this.id)"><font size="3" face="simsun" >Tā cónglái bù cā zhuōzi,yě cónglái bù cā dì,yīfu shū děng dàochù rēng.</font> </lable>
+   <lable id="d1-13k-h-4_py" onclick="fileStart(this.id)"><font size="3" face="simsun" >Zǒngzhī, tā de wūzi dàochù shì shū, dàochù shì zázhì, dàochù shì zāngyīfu.</font> </lable>
+
+   </td>
+  </tr>
+  <tr id="td_jp_3" style="display:none">
+   <td>
+    <lable id="d1-13k-h-3_jp" onclick="fileStart(this.id)"><font size="3" face"mincho" >彼女は一度もテーブルを拭いたことなく、床を拭いたこともありません。服や本などはいたるところに投げ捨てられています。</font></lable>
+   <lable id="d1-13k-h-4_jp" onclick="fileStart(this.id)"><font size="3" face"mincho" >とにかく、彼女の部屋は、至るところに雑誌があり、いたるところに汚い服があります。</font></lable>
+       </td>
+  </tr> 
+    <tr id="td_ch_4">
+   <td>
+    <lable id="d1-13k-h-5_ch" onclick="fileStart(this.id)"><font face="simsun" size="5">明天妹妹的男朋友第一次来我家。</font></lable>
+    <lable id="d1-13k-h-6_ch" onclick="fileStart(this.id)"><font face="simsun" size="5">今天早上妹妹一起床就开始打扫屋子。</font></lable>
+       </td>
+  </tr>
+  
+  <tr id="td_py_4" style="display:none">
+   <td id="ch_1">
+    <lable id="d1-13k-h-5_py" onclick="fileStart(this.id)"><font size="3" face="simsun" >Míngtiān mèimei de nán péngyǒu dì yī cì lái wǒ jiā.</font> </lable>
+   <lable id="d1-13k-h-6_py" onclick="fileStart(this.id)"><font size="3" face="simsun" >Jīntiān zǎoshang mèimèi yì qǐchuáng jiù kāishǐ dǎsǎo wūzi.</font> </lable>
+
+   </td>
+  </tr>
+  <tr id="td_jp_4" style="display:none">
+   <td>
+    <lable id="d1-13k-h-5_jp" onclick="fileStart(this.id)"><font size="3" face"mincho" >明日は、妹の彼氏がはじめて家に来ます。</font></lable>
+   <lable id="d1-13k-h-6_jp" onclick="fileStart(this.id)"><font size="3" face"mincho" >今日の朝から、妹は起きると、すぐ部屋の掃除をはじめました。</font></lable>
+       </td>
+  </tr>  
+ <tr id="td_ch_5">
+   <td>
+    <lable id="d1-13k-h-7_ch" onclick="fileStart(this.id)"><font face="simsun" size="5">她先把衣服洗了，把桌子擦干净了，然后又把书架上的书放得整整齐齐，最后把地也擦得干干净净。</font></lable>
+       </td>
+  </tr>
+  
+  <tr id="td_py_5" style="display:none">
+   <td id="ch_1">
+    <lable id="d1-13k-h-7_py" onclick="fileStart(this.id)"><font size="3" face="simsun" >Tā xiān bǎ yīfu xǐ le, bǎ zhuōzi cā gānjìng le, ránhòu yòu bǎ shūjià shàng de shū fang de zhěngzhěngqíqí, zuìhòu bǎ dì yě cā de gāngānjìngjìng.
+</font> </lable>
+      </td>
+  </tr>
+  <tr id="td_jp_5" style="display:none">
+   <td>
+    <lable id="d1-13k-h-7_jp" onclick="fileStart(this.id)"><font size="3" face"mincho" >彼女はまず洗濯し、テーブルを拭き、その後本棚の本をきちんと並べました。最後に、床をピカピカに拭きました。</font></lable>
+       </td>
+  </tr>  
+<tr id="td_ch_6">
+   <td>
+    <lable id="d1-13k-h-8_ch" onclick="fileStart(this.id)"><font face="simsun" size="5">一直干到下午 4 点，她终于把屋子收拾干净了。</font></lable>
+       </td>
+  </tr>
+  
+  <tr id="td_py_6" style="display:none">
+   <td id="ch_1">
+    <lable id="d1-13k-h-8_py" onclick="fileStart(this.id)"><font size="3" face="simsun" >Yìzhí gàndào xiàwǔ sì diǎn tā zhōngyú bǎ wūzi shōushi gānjìng le.</font> </lable>
+      </td>
+  </tr>
+  <tr id="td_jp_6" style="display:none">
+   <td>
+    <lable id="d1-13k-h-8_jp" onclick="fileStart(this.id)"><font size="3" face"mincho" >午後4時まで（彼女は）やって、彼女はとうとう部屋をきれいに片づけました。</font></lable>
+       </td>
+  </tr>  
+
+  <tr height="20"></tr>
+     
+  
+  </table>
+  
+</div>
+<!-- AUDIO CREATE START -->
+<audio id="audiolocal" ></audio>
+<!-- AUDIO CREATE END -->
+<h6 align="center"></h6>
+<script>
+
+// メディアプレイヤー
+var oAudio  = document.getElementById('audiolocal');
+
+// 前回文字ID
+var idper = "";
+
+// 言語表示
+// lang:dropdownlistの選択値
+function setViewItem(lang) {
+    //TRのID
+    // 第一行目
+    var p_strIdCh_1 = document.getElementById("td_ch_1");
+    var p_strIdJp_1 = document.getElementById("td_jp_1");
+    var p_strIdPy_1 = document.getElementById("td_py_1");
+    // 第二行目
+    var p_strIdCh_2 = document.getElementById("td_ch_2");
+    var p_strIdJp_2 = document.getElementById("td_jp_2");
+    var p_strIdPy_2 = document.getElementById("td_py_2");
+    // 第三行目
+    var p_strIdCh_3 = document.getElementById("td_ch_3");
+    var p_strIdJp_3 = document.getElementById("td_jp_3");
+    var p_strIdPy_3 = document.getElementById("td_py_3");
+        // 第三行目
+    var p_strIdCh_4 = document.getElementById("td_ch_4");
+    var p_strIdJp_4 = document.getElementById("td_jp_4");
+    var p_strIdPy_4 = document.getElementById("td_py_4");
+    // 第三行目
+    var p_strIdCh_5 = document.getElementById("td_ch_5");
+    var p_strIdJp_5 = document.getElementById("td_jp_5");
+    var p_strIdPy_5 = document.getElementById("td_py_5");
+    // 第三行目
+    var p_strIdCh_6 = document.getElementById("td_ch_6");
+    var p_strIdJp_6 = document.getElementById("td_jp_6");
+    var p_strIdPy_6 = document.getElementById("td_py_6");
+    // 第三行目
+    var p_strIdCh_7 = document.getElementById("td_ch_7");
+    var p_strIdJp_7 = document.getElementById("td_jp_7");
+    var p_strIdPy_7 = document.getElementById("td_py_7");
+    // 第三行目
+    var p_strIdCh_8 = document.getElementById("td_ch_8");
+    var p_strIdJp_8 = document.getElementById("td_jp_8");
+    var p_strIdPy_8 = document.getElementById("td_py_8");
+
+        // 第n行目
+    //  var p_strIdCh_n = document.getElementById("td_ch_n");
+     // var p_strIdJp_n = document.getElementById("td_jp_n");
+    //  var p_strIdPy_n = document.getElementById("td_py_n");
+
+    
+    
+    if (lang == "chinese") {
+        // 引数=chineseの時
+        // 第一行目
+        // TRを活性に設定
+        p_strIdCh_1.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_1.style.display = 'none';
+        // TRを非活性に設定
+        p_strIdPy_1.style.display = 'none';
+        
+        // 第二行目
+        // TRを活性に設定
+        p_strIdCh_2.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_2.style.display = 'none';
+        // TRを非活性に設定
+        p_strIdPy_2.style.display = 'none';
+        
+        // 第三行目
+        // TRを活性に設定
+        p_strIdCh_3.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_3.style.display = 'none';
+        // TRを非活性に設定
+        p_strIdPy_3.style.display = 'none';
+        
+                // 第4行目
+        // TRを活性に設定
+        p_strIdCh_4.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_4.style.display = 'none';
+        // TRを非活性に設定
+        p_strIdPy_4.style.display = 'none';
+     
+             // 第5行目
+        // TRを活性に設定
+        p_strIdCh_5.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_5.style.display = 'none';
+        // TRを非活性に設定
+        p_strIdPy_5.style.display = 'none';
+     
+             // 第6行目
+        // TRを活性に設定
+        p_strIdCh_6.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_6.style.display = 'none';
+        // TRを非活性に設定
+        p_strIdPy_6.style.display = 'none';
+     
+             // 第7行目
+        // TRを活性に設定
+        p_strIdCh_7.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_7.style.display = 'none';
+        // TRを非活性に設定
+        p_strIdPy_7.style.display = 'none';
+     
+             // 第8行目
+        // TRを活性に設定
+        p_strIdCh_8.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_8.style.display = 'none';
+        // TRを非活性に設定
+        p_strIdPy_8.style.display = 'none';
+     
+        
+    } else if (lang == "japanese") {
+        // 引数=japaneseの時
+        // 第一行目
+        // TRを非活性に設定
+        p_strIdCh_1.style.display = '';
+        // TRを活性に設定
+        p_strIdJp_1.style.display = '';
+        // TRを非活性に設定
+        p_strIdPy_1.style.display = 'none';
+        
+        // 第二行目
+        // TRを非活性に設定
+        p_strIdCh_2.style.display = '';
+        // TRを活性に設定
+        p_strIdJp_2.style.display = '';
+        // TRを非活性に設定
+        p_strIdPy_2.style.display = 'none';
+        
+        // 第三行目
+        // TRを非活性に設定
+        p_strIdCh_3.style.display = '';
+        // TRを活性に設定
+        p_strIdJp_3.style.display = '';
+        // TRを非活性に設定
+        p_strIdPy_3.style.display = 'none';
+        
+             // 第4行目
+        // TRを非活性に設定
+        p_strIdCh_4.style.display = '';
+        // TRを活性に設定
+        p_strIdJp_4.style.display = '';
+        // TRを非活性に設定
+        p_strIdPy_4.style.display = 'none';
+    
+         // 第5行目
+        // TRを非活性に設定
+        p_strIdCh_5.style.display = '';
+        // TRを活性に設定
+        p_strIdJp_5.style.display = '';
+        // TRを非活性に設定
+        p_strIdPy_5.style.display = 'none';
+    
+         // 第6行目
+        // TRを非活性に設定
+        p_strIdCh_6.style.display = '';
+        // TRを活性に設定
+        p_strIdJp_6.style.display = '';
+        // TRを非活性に設定
+        p_strIdPy_6.style.display = 'none';
+    
+         // 第7行目
+        // TRを非活性に設定
+        p_strIdCh_7.style.display = '';
+        // TRを活性に設定
+        p_strIdJp_7.style.display = '';
+        // TRを非活性に設定
+        p_strIdPy_7.style.display = 'none';
+    
+         // 第8行目
+        // TRを非活性に設定
+        p_strIdCh_8.style.display = '';
+        // TRを活性に設定
+        p_strIdJp_8.style.display = '';
+        // TRを非活性に設定
+        p_strIdPy_8.style.display = 'none';
+    
+        
+    } else if (lang == "pinyin") {
+        // 引数=pinyinの時
+        // 第一行目
+        // TRを非活性に設定
+        p_strIdCh_1.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_1.style.display = 'none';
+        // TRを活性に設定
+        p_strIdPy_1.style.display = '';
+        
+        // 第二行目
+        // TRを非活性に設定
+        p_strIdCh_2.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_2.style.display = 'none';
+        // TRを活性に設定
+        p_strIdPy_2.style.display = '';
+        
+        // 第三行目
+        // TRを非活性に設定
+        p_strIdCh_3.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_3.style.display = 'none';
+        // TRを活性に設定
+        p_strIdPy_3.style.display = '';
+        
+                        
+               // 第4行目
+        // TRを非活性に設定
+        p_strIdCh_4.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_4.style.display = 'none';
+        // TRを活性に設定
+        p_strIdPy_4.style.display = '';
+        
+   
+                // 第5行目
+        // TRを非活性に設定
+        p_strIdCh_5.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_5.style.display = 'none';
+        // TRを活性に設定
+        p_strIdPy_5.style.display = '';
+        
+          // 第6行目
+        // TRを非活性に設定
+        p_strIdCh_6.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_6.style.display = 'none';
+        // TRを活性に設定
+        p_strIdPy_6.style.display = '';
+        
+                // 第7行目
+        // TRを非活性に設定
+        p_strIdCh_7.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_7.style.display = 'none';
+        // TRを活性に設定
+        p_strIdPy_7.style.display = '';
+        
+   
+                // 第8行目
+        // TRを非活性に設定
+        p_strIdCh_8.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_8.style.display = 'none';
+        // TRを活性に設定
+        p_strIdPy_8.style.display = '';
+        
+   
+        
+    } else if (lang == "everything") {
+        // 引数=pinyinの時
+        // 第一行目
+        // TRを非活性に設定
+        p_strIdCh_1.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_1.style.display = '';
+        // TRを活性に設定
+        p_strIdPy_1.style.display = '';
+        
+        // 第二行目
+        // TRを非活性に設定
+        p_strIdCh_2.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_2.style.display = '';
+        // TRを活性に設定
+        p_strIdPy_2.style.display = '';
+        
+        // 第三行目
+        // TRを非活性に設定
+        p_strIdCh_3.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_3.style.display = '';
+        // TRを活性に設定
+        p_strIdPy_3.style.display = '';
+        
+         // 第4行目
+        // TRを非活性に設定
+        p_strIdCh_4.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_4.style.display = '';
+        // TRを活性に設定
+        p_strIdPy_4.style.display = '';
+        
+         // 第5行目
+        // TRを非活性に設定
+        p_strIdCh_5.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_5.style.display = '';
+        // TRを活性に設定
+        p_strIdPy_5.style.display = '';
+        
+         // 第6行目
+        // TRを非活性に設定
+        p_strIdCh_6.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_6.style.display = '';
+        // TRを活性に設定
+        p_strIdPy_6.style.display = '';
+        
+         // 第7行目
+        // TRを非活性に設定
+        p_strIdCh_7.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_7.style.display = '';
+        // TRを活性に設定
+        p_strIdPy_7.style.display = '';
+        
+         // 第8行目
+        // TRを非活性に設定
+        p_strIdCh_8.style.display = '';
+        // TRを非活性に設定
+        p_strIdJp_8.style.display = '';
+        // TRを活性に設定
+        p_strIdPy_8.style.display = '';
+        
+    }
+};
+
+
+// 全部再生
+function playAllRadioList(raditCnt) {
+    // radioファイル配列
+    var radioArgs = new Array('d1-13k-h-1','d1-13k-h-2','d1-13k-h-3','d1-13k-h-4','d1-13k-h-5','d1-13k-h-6','d1-13k-h-7','d1-13k-h-8');
+   
+    // ファイル再生を呼出
+    // 0は固定値
+    doRadioFile(radioArgs, 0);
+};
+
+// ファイル再生
+function doRadioFile(radioArgs, indexNum) {
+  
+  // 前回文字の色を戻り
+    addColorToStr(idper, 'black');
+    
+    // ファイル終了判断
+    if (indexNum >= radioArgs.length) {
+        // 再生終了
+        return;
+    }
+    // '.mp3'
+    var lastStr = '.mp3';
+    // 本ファイル名
+    var filename = radioArgs[indexNum].concat(lastStr);
+    
+
+    // フォルダ
+    var folderPath = 'sound/';
+    // フルパス
+    var filePath = folderPath.concat(filename);
+    
+    // NEW 新プレヤー
+    //oAudio = new Audio(filePath);
+
+    oAudio.src = filePath;
+    // ファイル再生処理
+    oAudio.play();
+
+    // 前回文字IDを設定
+    idper = radioArgs[indexNum];
+
+    // 文字色を設定
+    addColorToStr(radioArgs[indexNum], 'red');
+
+
+    oAudio.addEventListener("ended", function(){
+    
+        // 文字色を削除
+        addColorToStr(radioArgs[indexNum], 'black');
+        indexNum = indexNum+1;
+        doRadioFile(radioArgs, indexNum);
+    });
+
+};
+
+// アンダーバーを追加
+function addColorToStr(strId, colorStr) {
+    var strCh = "_ch";
+    var strIdCh = strId.concat(strCh);
+    
+    var p_strIdCh = document.getElementById(strIdCh);
+    if (p_strIdCh == undefined) {
+        return;
+    }
+    
+    // css追加
+    p_strIdCh.style.color = colorStr;
+   
+};
+
+// 指定されたファイルを再生
+function fileStart(id) {
+
+    // 前回文字の色を戻り
+    addColorToStr(idper, 'black');
+
+    // ファイル名称を取得
+    var strs = id.split("_");
+    if (strs.length > 0) {
+        // '.mp3'
+        var lastStr = '.mp3';
+        // 本ファイル名
+        var filename = strs[0].concat(lastStr);
+        // var oAudio  = document.createElement("oAudio ");
+        // フォルダ
+        var folderPath = 'sound/';
+        // フルパス
+        var filePath = folderPath.concat(filename);
+        
+        oAudio.src = filePath;
+        // ファイル再生処理
+        oAudio.play();
+
+    // 前回文字IDを設定
+        idper = strs[0];
+        // 文字色を設定
+        addColorToStr(strs[0], 'red');
+        oAudio.addEventListener("ended", function(){
+        　　// 文字色を削除
+            addColorToStr(strs[0], 'black');
+            
+            // 前回radio停止
+            oAudio.pause();
+            // 前回文字の色を戻り
+            addColorToStr(idper, 'black');
+        });
+    }
+};
+
+// radioを終了
+function myrefresh() 
+{ 
+    // 前回radio停止
+    oAudio .pause();
+    // 前回文字の色を戻り
+    addColorToStr(idper, 'black');
+};
+
+</script>
+<!-- ui-skin:start -->
+<script src="../../../assets/ui/lessons.js?v=20261023"></script>
+<script src="../../../assets/ui/ui.js?v=20261023"></script>
+<!-- ui-skin:end -->
+</body>
+</html>

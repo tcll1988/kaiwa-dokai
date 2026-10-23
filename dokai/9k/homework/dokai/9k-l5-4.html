@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>第9課練習問題5-4</title>
+<style>
+body{background-color:lightblue; font-family:sans-serif;}
+a {
+	font-size: 18px;
+}
+td {
+	font-family: SimSun;
+}
+select {
+	font-size: 24px;
+}
+a:link {
+	color: #03F;
+}
+a:visited {
+	color: #03F;
+}
+</style>
+<script type="text/javascript" src="9k-a.js"></script>
+<script>
+
+// num1:大問題No, num2: 小問題No
+function doRight(num1, num2){
+  // 正解
+  var rightAns = doFindAnswer(num1, num2);
+  // 問題ID
+  var questionId = num1 + '_' + num2;
+  
+  // 学生の答え
+  var stuAns = document.getElementById(questionId).value;
+  
+  // 答え表示
+  var resultVie = questionId + '_R';
+  
+  // 結果比較
+  if (rightAns == stuAns) {
+    document.getElementById(resultVie).innerText = "〇";
+    document.getElementById(resultVie).style.color = "red";
+  } else {
+    document.getElementById(resultVie).innerText = rightAns;
+	document.getElementById(resultVie).style.color = "black";
+  }
+   
+};
+</script>
+<!-- ui-skin:start -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<link rel="stylesheet" href="../../../assets/ui/ui.css?v=20261023" />
+<!-- ui-skin:end -->
+</head>
+<body>
+   <table>
+    <tr><td height="50"></td></tr>
+   </table>
+   <div align="center"> 
+     <p><font size="5"> <a><img src="images/7.png" alt="" width="120" height="92" /></a>問5下の短文を読んで、①～⑤までの質問をそれぞれの下に示してあるA～Dの中から1つ選びなさい。</font></p>
+     <p>&nbsp;</p>
+   </div>
+<table border="1" style="font-size:30px;"  align="center">
+ <tr>
+ <td colspan="5" width="300"> <font size="5" face="simsun">　上小学时，我喜欢文艺。我学过唱歌儿，学过跳舞，还学过弹钢琴。 从小学一年级开始学唱歌儿一直到小学结束。从小学二年级开始学跳舞一直到高中三年级结束。钢琴也是从小学一年级开始学的，但现在一直还坚持弹钢琴。
+ <br /> 　从高中一年级开始，每年我都参加全国钢琴比赛，得过三次全国第一名。今年是我大学的最后一年，也是最后一次参加全国钢琴比赛，我希望能得第一名。 </font>  </td>
+ </tr>
+  <tr>
+  <td width="47">
+ <font size="5"></font>
+  </td>
+  <td colspan="4"> <font size="5">我参加过几次全国钢琴比赛？ </font>  </td>
+  </tr>
+  <tr>
+  <td>A</td>
+  <td width="178"><font face="SimSun" size="5">四次 </font></td>
+  <td width="38">B</td>
+  <td width="213"><font face="SimSun" size="5">五次 </font></td>
+    </tr>
+      <tr>
+  <td>C</td>
+  <td><font face="SimSun" size="5">六次 </font></td>
+  <td>D</td>
+  <td><font face="SimSun" size="5">不知道 </font></td>
+    </tr>
+ <tr><!--問題番号編集可能 -->
+  <td class="selecter" colspan="5" align="center">
+	     <select name="select" onchange="setViewItem(this.value)" id="5_4">
+  	       <option value="0" selected>&nbsp; </option>
+           <option value="A">A </option>
+	       <option value="B">B </option>
+	       <option value="C">C </option>
+	       <option value="D">D </option>
+	     </select>
+    </td>
+  </tr>
+  <tr><!--問題番号編集可能 -->
+    <td colspan="6" align="center">&nbsp;<label id="5_4_R"/></label>   
+     </td>
+  </tr>
+  <tr>
+  <td colspan="5">　<!--問題番号編集可能 -->　　　　
+    <input type="button" value="確認" onclick="doRight(5,4)" style=" font-size:400px: width: 120px; height: 30px;" />
+　　</td> 
+　　<tr>
+<td align="center" colspan="5">　　　　<a href="9k-l.html">戻る</a>　　　　　　<a href="9k-l5-3.html">前へ</a>　　　　　　<a href="9k-l5-5.html">次へ</a>
+</td>
+</tr>    
+  </table>
+<!-- ui-skin:start -->
+<script src="../../../assets/ui/lessons.js?v=20261023"></script>
+<script src="../../../assets/ui/ui.js?v=20261023"></script>
+<!-- ui-skin:end -->
+</body>
+</html>

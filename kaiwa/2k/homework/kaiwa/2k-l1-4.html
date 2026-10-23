@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>第2課練習問題2-4</title>
+<style>
+body{background-color:lightblue; font-family:sans-serif;}
+a {
+	font-size: 18px;
+}
+a:link {
+	color: #03F;
+}
+a:visited {
+	color: #03F;
+}
+</style>
+<script type="text/javascript" src="2k-a.js"></script>
+<script type="text/javascript" src="wordRadioFile.js"></script>
+<script>
+
+// num1:大問題No, num2: 小問題No
+function doRight(num1, num2){
+  // 正解
+  var rightAns = doFindAnswer(num1, num2);
+  // 問題ID
+  var questionId = num1 + '_' + num2;
+  
+  // 学生の答え
+  var stuAns = document.getElementById(questionId).value;
+  
+  // 答え表示
+  var resultVie = questionId + '_R';
+  
+  // 結果比較
+  if (rightAns == stuAns) {
+    document.getElementById(resultVie).innerText = "〇";
+    document.getElementById(resultVie).style.color = "red";
+  } else {
+    document.getElementById(resultVie).innerText = rightAns;
+    document.getElementById(resultVie).style.color = "black";
+  }
+   
+};
+
+// ファイル再生
+function doFilePlay() {
+  // ファイル名称を設定
+  setRadioFile("2k-l2-4.mp3");
+};
+</script>
+<!-- ui-skin:start -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<link rel="stylesheet" href="../../../assets/ui/ui.css?v=20261023" />
+<!-- ui-skin:end -->
+</head>
+<body>
+   <table>
+    <tr><td height="50"></td></tr>
+   </table>
+   <div align="center"> 
+     <p><font size="5" face="msmincho"><img src="images/7.png" width="106" height="75" /></a>発音を聞いて、声調記号をつけなさい。</font></p>
+     <p>&nbsp;</p>
+   </div>
+<table border="1" style="font-size:30px;"  align="center">
+ <tr>
+   <td align="center">
+      <input type="button" value="再生" onclick="doFilePlay()" style=" font-size:400px: width: 120px; height: 30px;" />
+   </td>
+ </tr>
+ <tr>
+ <!--次の列に、数字を自由に変えられる -->
+   <td align="center"><input id="1_4" name="" type="text" style="height:50px; font-size:30px;" align="center" value="hao" >
+    </td>
+   </tr>
+  <tr>
+  <td colspan="4" align="center"><font size="15" face="SimSun">好</font></td>
+  </tr>
+  <tr>
+   <!--次の列に、数字を自由に変えられる -->
+  <td style="white-space: nowrap" align="center">&nbsp;<label id="1_4_R"/></label>
+  </td>
+   </tr>
+  <tr>
+   <td align="center">
+      <!--次の列に、数字を自由に変えられる -->  
+  <input type="button" value="確認" onclick="doRight(1,4)" style=" font-size:400px: width: 120px; height: 30px;" />
+  </td>
+  </tr>
+    <tr>
+   <td align="center">
+      <!--次の列に、数字を自由に変えられる -->  
+       <a href="2k-l.html">戻る</a>　　　　　　　　<a href="2k-l1-3.html">前へ</a>　　　　　　　　<a href="2k-l1-5.html">次へ</a>
+    </td>
+</tr>
+  </table>
+
+<!-- ui-skin:start -->
+<script src="../../../assets/ui/lessons.js?v=20261023"></script>
+<script src="../../../assets/ui/ui.js?v=20261023"></script>
+<!-- ui-skin:end -->
+</body>
+</html>
