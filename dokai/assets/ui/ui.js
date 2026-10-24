@@ -1,5 +1,5 @@
 /* 共通UIスキン用の補助スクリプト（見た目のみ）。
-   元の fileStart / playAllRadioList / doRight などには一切触れない。
+   再生・採点の処理は assets/js/player.js・quiz.js にあり、ここでは触れない。
    ここが読み込めなくても、ページは元どおり動く。 */
 (function () {
   'use strict';
@@ -60,32 +60,83 @@
     });
   });
 
-  /* ---- 採点結果に色と言葉を添える（判定そのものは元のまま） ---- */
-  function mark(l) {
-    var v = (l.textContent || '').trim();
-    l.classList.remove('ui-ok', 'ui-ng');
-    if (!v) return;
-    l.classList.add(v === '〇' ? 'ui-ok' : 'ui-ng');
-  }
-  $all('label[id$="_R"]').forEach(function (l) {
-    new MutationObserver(function () { mark(l); }).observe(l, { childList: true, characterData: true, subtree: true });
-  });
+  /* 採点結果の色は assets/js/quiz.js が結果欄に付けるクラス（.is-ok / .is-ng / .is-retry / .is-empty）で ui.css が表示 */
 
-  /* ---- 横にはみ出す表はスクロール枠へ ---- */
-  $all('table').forEach(function (x) {
-    if (x.id === 'title' || x.closest('.ui-scroll')) return;
-    if (x.scrollWidth > b.clientWidth + 4) {
-      var w = d.createElement('div'); w.className = 'ui-scroll';
-      x.parentNode.insertBefore(w, x); w.appendChild(x);
+  /* ---- 横にはみ出す表はスクロール枠へ（表示切替・画面回転のあとも再チェック） ---- */
+  function wrapWide() {
+    $all('table').forEach(function (x) {
+      if (x.id === 'title' || x.closest('.ui-scroll')) return;
+      if (x.scrollWidth > b.clientWidth + 4) {
+        var w = d.createElement('div'); w.className = 'ui-scroll';
+        x.parentNode.insertBefore(w, x); w.appendChild(x);
+      }
+    });
+  }
+  wrapWide();
+  var wrapTimer = 0;
+  function wrapLater() { clearTimeout(wrapTimer); wrapTimer = setTimeout(wrapWide, 150); }
+  d.addEventListener('kd:viewchange', wrapLater);
+  window.addEventListener('resize', wrapLater);
+
+  /* ---- 進み具合（quiz.js が localStorage "kd-progress" に正解した小問を記録） ---- */
+  var SETS = (window.UI_LESSONS && window.UI_LESSONS.sets) || {};
+  function progress() { try { return JSON.parse(localStorage.getItem('kd-progress')) || {}; } catch (e) { return {}; } }
+  function setDone(dir, key) {          // そのセットで正解した小問の数
+    var all = progress(), n = 0, pre = dir + key + '-';
+    for (var k in all) if (k.indexOf(pre) === 0 && /^\d+\.html$/.test(k.slice(pre.length))) n += all[k].length;
+    return n;
+  }
+  function dirOf(href) { var u = new URL(href, location.href); return decodeURIComponent(u.pathname).replace(/[^\/]*$/, ''); }
+  if (type === 'hwmenu') {
+    $all('a').forEach(function (a) {
+      var m = (a.getAttribute('href') || '').match(/^(\d+k-l\d*)-1\.html$/);
+      if (!m || !SETS[m[1]]) return;
+      var total = SETS[m[1]][1], done = Math.min(setDone(dirOf(a.getAttribute('href')), m[1]), total);
+      if (!done) return;
+      var sp = d.createElement('span'); sp.className = 'kd-prog' + (done >= total ? ' kd-prog--done' : '');
+      sp.textContent = done + '/' + total;
+      sp.setAttribute('aria-label', '正解 ' + done + ' / ' + total);
+      a.appendChild(sp);
+    });
+  }
+  /* ---- 完成ページ：スマホでは Excel が開きにくいことを一言 ---- */
+  if (type === 'done') {
+    $all('input[value="宿題提出"]').forEach(function (x) {
+      var n = d.createElement('div'); n.className = 'kd-mobile-note';
+      n.textContent = '※ 提出用のExcelファイルはパソコンで開いてください';
+      var host = x.closest('td,p,div') || x.parentNode;
+      host.appendChild(n);
+    });
+  }
+  if (type === 'exercise') {
+    var em = file.match(/^(\d+k-l(\d*))-(\d+)\.html$/);
+    if (em && SETS[em[1]]) {
+      var pill = d.createElement('div'); pill.className = 'kd-pill';
+      var lab = d.createElement('span');
+      lab.textContent = '問題' + em[2] + '（' + em[3] + '/' + SETS[em[1]][0] + '）';
+      var dot = d.createElement('span'); dot.className = 'kd-pill-ok'; dot.setAttribute('aria-hidden', 'true');
+      pill.appendChild(lab); pill.appendChild(dot);
+      var bar = d.createElement('span'); bar.className = 'kd-bar';
+      bar.innerHTML = '<i></i>'; pill.appendChild(bar);
+      var upd = function () {
+        var dir = location.pathname.replace(/[^\/]*$/, '');
+        var tot = SETS[em[1]][1], dn = Math.min(setDone(decodeURIComponent(dir), em[1]), tot);
+        bar.firstChild.style.width = Math.round(100 * dn / tot) + '%';
+        bar.title = '正解 ' + dn + ' / ' + tot;
+        var mine = progress()[decodeURIComponent(location.pathname)] || [];
+        dot.textContent = mine.length && mine.length >= $all('[onclick^="doRight("]').length ? '✓' : '';
+      };
+      upd(); d.addEventListener('kd:progress', upd);
+      b.insertBefore(pill, b.firstChild);
     }
-  });
+  }
 
   /* ---- 課ハブ：既存リンクからカードを作る（URLは元のまま） ---- */
   if (type === 'hub') {
     var h1 = d.querySelector('h1');
     var title = h1 ? h1.textContent.replace(/[\s\u3000\u00a0]+/g, ' ').trim() : d.title;
     var m = title.match(/^(第\s*\S+?課)\s*(.*)$/);
-    var items = [['本文', '-h-1.html', '会話・本文を聞く'], ['単語', '-t1-1.html', '新出単語'], ['文法', '-p.html', 'ポイント'], ['宿題', '-l.html', '練習問題・提出']];
+    var items = [['本文', '-h-1.html', SITE === 'dokai' ? '読む・聞く' : '会話・本文を聞く'], ['単語', '-t1-1.html', '新出単語'], ['文法', '-p.html', 'ポイント'], ['宿題', '-l.html', '練習問題・提出']];
     var cards = [];
     items.forEach(function (it) {
       var a = $all('a').filter(function (x) { return txt(x) === it[0]; })[0] ||
@@ -139,7 +190,8 @@
       });
       var links2 = d.createElement('div'); links2.className = 'ui-links';
       var how = d.querySelector('a[href$="-m.html"]');
-      if (how) links2.innerHTML = '<a class="ui-btn" href="' + how.getAttribute('href') + '">使い方</a>';
+      links2.innerHTML = '<a class="ui-btn ui-btn--back" href="../index.html">トップへ</a>';
+      if (how) links2.innerHTML += '<a class="ui-btn" href="' + how.getAttribute('href') + '">使い方</a>';
       $all('body > *').forEach(function (x) { if (x.tagName !== 'SCRIPT') add(x, 'ui-legacy-hidden'); });
       $all('body > *').forEach(function (x) { if (x.nodeType === 3) x.remove(); });
       b.insertBefore(links2, b.firstChild); b.insertBefore(g, b.firstChild); b.insertBefore(hero2, b.firstChild);

@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>第3課練習問題2-1</title>
@@ -15,43 +15,10 @@ a:visited {
 	color: #03F;
 }
 </style>
-<script type="text/javascript" src="3k-a.js"></script>
-<script type="text/javascript" src="wordRadioFile.js"></script>
-<script>
-
-// num1:大問題No, num2: 小問題No
-function doRight(num1, num2){
-  // 正解
-  var rightAns = doFindAnswer(num1, num2);
-  // 問題ID
-  var questionId = num1 + '_' + num2;
-  
-  // 学生の答え
-  var stuAns = document.getElementById(questionId).value;
-  
-  // 答え表示
-  var resultVie = questionId + '_R';
-  
-  // 結果比較
-  if (rightAns == stuAns) {
-    document.getElementById(resultVie).innerText = "〇";
-    document.getElementById(resultVie).style.color = "red";
-  } else {
-    document.getElementById(resultVie).innerText = rightAns;
-    document.getElementById(resultVie).style.color = "black";
-  }
-   
-};
-
-// ファイル再生
-function doFilePlay() {
-  // ファイル名称を設定
-  setRadioFile("3k-l2-1.mp3");
-};
-</script>
+<script type="text/javascript" src="3k-a.js?v=20261024"></script>
 <!-- ui-skin:start -->
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<link rel="stylesheet" href="../../../assets/ui/ui.css?v=20261023" />
+<link rel="stylesheet" href="../../../assets/ui/ui.css?v=20261024b" />
 <!-- ui-skin:end -->
 </head>
 <body>
@@ -65,7 +32,7 @@ function doFilePlay() {
 <table border="1" style="font-size:30px;"  align="center">
  <tr>
    <td align="center">
-      <input type="button" value="再生" onclick="doFilePlay()" style=" font-size:400px: width: 120px; height: 30px;" />
+      <input type="button" value="再生" onclick="doFilePlay('3k-l2-1.mp3')" style=" font-size:400px: width: 120px; height: 30px;" />
    </td>
  </tr>
  <tr>
@@ -95,9 +62,13 @@ function doFilePlay() {
 </tr>
   </table>
 
+<!-- kd-js:start -->
+<script src="../../../assets/js/player.js?v=20261024"></script>
+<script src="../../../assets/js/quiz.js?v=20261024b"></script>
+<!-- kd-js:end -->
 <!-- ui-skin:start -->
-<script src="../../../assets/ui/lessons.js?v=20261023"></script>
-<script src="../../../assets/ui/ui.js?v=20261023"></script>
+<script src="../../../assets/ui/lessons.js?v=20261024"></script>
+<script src="../../../assets/ui/ui.js?v=20261024"></script>
 <!-- ui-skin:end -->
 </body>
 </html>
