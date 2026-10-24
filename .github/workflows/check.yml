@@ -29,3 +29,6 @@ jobs:
       - name: 答えデータのチェック
         if: always()
         run: python3 tools/quizcheck.py --strict
+      - name: 採点ルールのテスト（ピンインの音節・句読点）
+        if: always()
+        run: node tools/grading_test.js

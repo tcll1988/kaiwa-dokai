@@ -122,7 +122,7 @@ READER_JS = """() => {
 }"""
 
 QUIZ_JS = """() => {
-  const out = { n: 0, ok: 0, bad: [], flow: null, fileplay: null };
+  const out = { n: 0, ok: 0, bad: [], flow: null, fileplay: null, freeN: 0, freeBad: [] };
   const btns = Array.from(document.querySelectorAll('[onclick^="doRight("]'));
   const fieldsOf = q => { const one = document.getElementById(q); if (one) return [one]; const l = []; let k = 1, e; while ((e = document.getElementById(q + '_' + k))) { l.push(e); k++; } return l; };
   btns.forEach((btn, idx) => {
@@ -134,6 +134,19 @@ QUIZ_JS = """() => {
     btn.click();
     const r = document.getElementById(q + '_R');
     if (r && r.textContent.trim() === '〇' && r.classList.contains('is-ok')) out.ok++; else out.bad.push(q + ' → ' + (r ? r.textContent : 'no _R') + ' / ans=' + ans);
+    // 翻訳欄：間違えたら（他の欄は正しくても）〇にならず、× ＋模範解答をすぐ表示（原版どおり 1 回目から）
+    const freeIdx = fs.map((f, i) => KDQuiz.isFree(f, parts[i])).map((b, i) => b ? i : -1).filter(i => i >= 0);
+    if (freeIdx.length) {
+      out.freeN++;
+      freeIdx.forEach(i => { fs[i].value = 'まちがい'; });
+      btn.click();
+      const t = r.textContent, c = r.className;
+      if (!(c.split(' ').indexOf('is-ng') >= 0 && c.split(' ').indexOf('is-model') >= 0 && t === parts.slice(0, fs.length).join('\\n') && !document.getElementById(q + '_self')))
+        out.freeBad.push(q + ' → ' + t + ' / ' + c);
+      fs.forEach((f, i) => { f.value = parts[i]; });
+      btn.click();
+      if (r.textContent.trim() !== '〇') out.freeBad.push(q + ' 正解なのに ' + r.textContent);
+    }
     if (idx === 0) {
       // 間違い → もう一度 → 正解表示、未回答
       const f0 = fs[0];
@@ -147,8 +160,15 @@ QUIZ_JS = """() => {
       out.selfBtn = !!document.getElementById(q + '_self');
       out.modelBtn = !!document.getElementById(q + '_model');
       if (f0.tagName !== 'SELECT' && /[a-z]/i.test(parts[0]) && /[1-5]/.test(parts[0]) && /^[a-z0-9 ]+$/i.test(parts[0])) {
-        f0.value = parts[0].replace(/[0-9]/g, '') + parts[0].replace(/[^0-9]/g, ''); fs.slice(1).forEach((f, i) => { f.value = parts[i + 1]; });
+        // 声調数字を各音節の末尾へ（ha3o → hao3）→ 〇
+        f0.value = KDQuiz.pyKey(parts[0]).split('.').join(''); fs.slice(1).forEach((f, i) => { f.value = parts[i + 1]; });
         btn.click(); out.pinyinMoved = r.textContent.trim(); out.placeholder = f0.placeholder;
+        // 数字を全部最後にまとめる（di4di → didi4）→ 最後の音節以外に声調があれば × （〇 にならない）
+        const syl = KDQuiz.pyKey(parts[0]).split('.');
+        if (syl.slice(0, -1).some(x => /[0-9]/.test(x))) {
+          f0.value = parts[0].replace(/[0-9]/g, '') + parts[0].replace(/[^0-9]/g, ''); btn.click();
+          out.pinyinOtherSyl = r.textContent.trim();
+        }
       }
       // 大文字・全角でも正解（記述欄）
       if (f0.tagName !== 'SELECT' && fs.length === 1) { f0.value = parts[0].toUpperCase().replace(/[a-z0-9]/gi, c => String.fromCharCode(c.charCodeAt(0) + 0xFEE0)) + '　'; btn.click(); out.lenient = r.textContent.trim(); }
@@ -161,7 +181,7 @@ QUIZ_JS = """() => {
 }"""
 
 summary = {'pages': 0, 'js_errors': 0, 'pages_with_errors': [], 'reader_pages': 0, 'reader_ok': 0, 'reader_bad': [],
-           'quiz_questions': 0, 'quiz_ok': 0, 'quiz_bad': [], 'quiz_flow_bad': [], 'fileplay': 0, 'fileplay_bad': [],
+           'quiz_questions': 0, 'quiz_ok': 0, 'quiz_bad': [], 'quiz_flow_bad': [], 'free_bad': [], 'fileplay': 0, 'fileplay_bad': [],
            'mobile_overflow': [], 'requests_404': []}
 with sync_playwright() as pw:
     br = pw.chromium.launch(executable_path=a.chrome, args=['--no-sandbox', '--mute-audio', '--disable-dev-shm-usage'])
@@ -197,17 +217,23 @@ with sync_playwright() as pw:
                     q = pg.evaluate(QUIZ_JS)
                     summary['quiz_questions'] += q['n']; summary['quiz_ok'] += q['n'] - len(q['bad'])
                     summary['quiz_bad'] += [p + ': ' + b for b in q['bad']]
+                    summary['free_questions'] = summary.get('free_questions', 0) + q['freeN']
+                    summary['free_bad'] += [p + ': ' + b for b in q['freeBad']]
                     if q.get('lenient') not in (None, '〇'):
                         summary['quiz_flow_bad'].append({'page': p, 'lenient': q['lenient']})
                     if q.get('perfield') and not q.get('free') and not q['perfield'].startswith('ng'):
                         summary['quiz_flow_bad'].append({'page': p, 'perfield': q['perfield']})
                     if q.get('pinyinMoved') not in (None, '〇') or (q.get('pinyinMoved') and q.get('placeholder') != '例：ba4'):
                         summary['quiz_flow_bad'].append({'page': p, 'pinyin': q.get('pinyinMoved'), 'ph': q.get('placeholder')})
+                    if q.get('pinyinOtherSyl') == '〇':
+                        summary['quiz_flow_bad'].append({'page': p, 'pinyin_other_syllable_ok': True})
+                    if q.get('pinyinOtherSyl') is not None:
+                        summary['pinyin_other_syl_checked'] = summary.get('pinyin_other_syl_checked', 0) + 1
                     if q.get('pinyinMoved'):
                         summary['pinyin_checked'] = summary.get('pinyin_checked', 0) + 1
                     if q['flow'] and q.get('free'):
                         summary['free_checked'] = summary.get('free_checked', 0) + 1
-                        if not (q['flow'][0].endswith('|is-model') and q['flow'][1].endswith('|is-model') and q['selfBtn'] is False and q['modelBtn']):
+                        if not (q['flow'][0].endswith('|is-ng is-model') and q['flow'][1].endswith('|is-ng is-model') and q['selfBtn'] is False and q['modelBtn']):
                             summary['quiz_flow_bad'].append({'page': p, 'free_flow': q['flow'], 'self': q['selfBtn'], 'model': q['modelBtn']})
                         q['flow'] = None
                     if q['flow'] and q.get('live') != 'polite':
@@ -236,6 +262,11 @@ short = {k: (len(v) if isinstance(v, list) else v) for k, v in summary.items()}
 print(json.dumps(short, ensure_ascii=False))
 if a.out:
     json.dump(summary, open(a.out, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
-for k in ('pages_with_errors', 'reader_bad', 'quiz_bad', 'quiz_flow_bad', 'fileplay_bad', 'mobile_overflow', 'requests_404'):
+for k in ('pages_with_errors', 'reader_bad', 'quiz_bad', 'quiz_flow_bad', 'free_bad', 'fileplay_bad', 'mobile_overflow', 'requests_404'):
     for x in summary[k][:8]:
         print(k.upper(), json.dumps(x, ensure_ascii=False)[:300])
+bad = summary['js_errors'] + sum(len(summary[k]) for k in ('reader_bad', 'quiz_bad', 'quiz_flow_bad', 'free_bad', 'fileplay_bad', 'mobile_overflow', 'requests_404'))
+if not a.load_only and summary['quiz_questions'] == 0:
+    bad += 1; print('NG: 練習問題を 1 問もテストできませんでした')
+print('OK: 問題なし' if not bad else 'NG: 問題 %d 件' % bad)
+sys.exit(1 if bad else 0)

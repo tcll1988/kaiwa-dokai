@@ -45,7 +45,7 @@ docs/archive/dokai_dokai_xlsx/     旧副本 dokai/dokai/ 的 6 个 xlsx（保�
 `kaiwa/assets/js`・`kaiwa/assets/ui/ui.css`・`ui.js` 是原本，`dokai` 下是副本。
 **只改 kaiwa 那份，然后运行** `python3 tools/sync_assets.py` 复制到 dokai。
 
-改了共通 JS/CSS 后，请把页面里的 `?v=20261024` 改成新的日期（防止学生手机读旧缓存）。
+改了共通 JS/CSS 后，请把页面里对应文件的 `?v=…` 改成新的值（防止学生手机读旧缓存）。例：`20261024` → 当天第二次改就用 `20261024b`。现在 quiz.js、ui.css 是 `20261024b`，其余是 `20261024`。
 
 ---
 
@@ -56,7 +56,7 @@ docs/archive/dokai_dokai_xlsx/     旧副本 dokai/dokai/ 的 6 个 xlsx（保�
 ```html
 <!-- kd-js:start -->
 <script src="../../../assets/js/player.js?v=20261024"></script>   <!-- 本文・単語・聴き取り页 -->
-<script src="../../../assets/js/quiz.js?v=20261024"></script>     <!-- 练习题页 -->
+<script src="../../../assets/js/quiz.js?v=20261024b"></script>     <!-- 练习题页 -->
 <!-- kd-js:end -->
 <!-- ui-skin:start -->
 <script src="../../../assets/ui/lessons.js?v=20261024"></script>
@@ -127,11 +127,13 @@ var answerArray = [answerFirstArr, answerSecondArr, …]; // 第 n 个 = 大問�
 | 设置 | 默认 | 含义 |
 |---|---|---|
 | `SHOW_ANSWER_AFTER` | `2` | 第 1 次答错显示「×　もう一度」，第 2 次才显示正确答案。改成 `1` = 原来的立即显示（原网站：答错 1 次就显示正确答案）。翻译题不受此设置影响，仍和原网站一样第 1 次就显示答案 |
-| `LENIENT_TEXT` | `true` | 填空题忽略空格（含全角）、全角/半角、标点、英文大小写。`false` = 完全一致 |
+| `LENIENT_TEXT` | `true` | 填空题只忽略空格（含全角）和全角/半角的差别；**标点要一致**（原网站是完全一致，也区分标点）。`false` = 完全一致 |
 
-- **数字式拼音**（答案如 `ha3o`、`le3ngre4`）：只比较字母和声调数字的顺序，`ha3o` = `hao3` = `hǎo` 都算对；这类输入框显示「例：ba4」。
+- **数字式拼音**（答案如 `ha3o`、`le3ngre4`）：先按音节切开，再比较每个音节的声调。声调数字写在本音节里哪儿都算对
+  （`ha3o` = `hao3` = `hǎo`，不分大小写），写到别的音节就判 ×（答案 `di4di`，写 `didi4` 判 ×）。这类输入框显示「例：ba4」。
+  测试：`node tools/grading_test.js`（所有答案原样都判〇、声调移到别的音节都判 ×、标点不同判 ×）。
 - **翻译题**（题目里有「〜に訳しなさい」，答案是日语句子或中文译文；kaiwa 1k–7k 的 l4/l5 共 70 题）：
-  判分和原网站相同——和答案一致才是「〇」，不一致就马上显示正确答案（标为「模範解答」，不出「×　もう一度」）。
+  判分和原网站相同——和答案一致才是「〇」，不一致就马上判 × 并显示正确答案（标为「×　模範解答」，不出「×　もう一度」）。
   学生**不能**自己打〇（原网站也不能）。另有「模範解答を見る」按钮，可以不作答直接看答案
   （原网站随便输入后按「確認」也会显示答案，效果相同）。
 - 输入框自动关闭手机的首字母大写・自动更正・联想（autocapitalize/autocorrect/spellcheck/autocomplete=off）。
@@ -169,10 +171,11 @@ python3 tools/new_lesson.py kaiwa 14k 15k --title "第15課 ○○○"
 | `python3 tools/linkcheck.py --strict` | 链接・图片・音频是否存在，句子 id → mp3，页面是否加载共通 JS，有没有残留旧的内联代码，没被用到的 mp3 |
 | `python3 tools/navcheck.py --strict` | 前へ／次へ 是否互相对应、有没有跳到别的课 |
 | `python3 tools/quizcheck.py --strict` | 每个「確認」：答案存在、答题栏・结果栏存在、空的个数=答案个数、选择题答案在选项里 |
+| `node tools/grading_test.js` | 判分规则：所有答案原样判〇；数字拼音声调写到别的音节判 ×（didi4 ≠ di4di）；标点不同判 ×，空格・全半角不同判〇 |
 | `python3 tools/gen_sets.py --check` | 进度显示用的题数是否最新 |
 | `python3 tools/sync_assets.py --check` | kaiwa 和 dokai 的共通文件是否一致 |
 | `python3 tools/verify_text.py main` | 和 main 比较，所有页面「看得见的文字」有没有变化（改代码时确认没动到内容） |
-| `python3 tools/browser_test.py` | （可选，需要 Playwright）用浏览器打开全部页面：JS 错误、全文朗读顺序、判分、375px 手机宽度 |
+| `python3 tools/browser_test.py` | （可选，需要 Playwright）用浏览器打开全部页面：JS 错误、全文朗读顺序、判分（含翻译题答错 → ×＋模範解答）、375px 手机宽度。有问题时结束代码为 1 |
 
 `tools/known_missing.txt`：已知缺失的文件（OneDrive 下载失败等）。列在这里的不算错误；补上文件后把那一行删掉。
 
